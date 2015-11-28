@@ -63,10 +63,10 @@ module tb_sram_address_calc
 	task testBothModes();
 		mode = 1'b0;
 		clock(1);
-		assert(sram_address == exp_outputAddr) else $error("on RESET and WRITE mode: sramAddr != finishAddr");
+		assert(sram_address == exp_outputAddr) else $error("on WRITE mode: sramAddr != finishAddr");
 		mode = 1'b1;
 		clock(1);
-		assert(sram_address == exp_rowCache) else $error("on RESET and READ mode: sramAddr != startAddr");
+		assert(sram_address == exp_rowCache) else $error("on READ mode: sramAddr != startAddr");
 	endtask
 
 	task reset();
@@ -107,7 +107,9 @@ module tb_sram_address_calc
 		reset();
 
 		mode = 1'b1;
-		// SDRAM to SRAM writing operation
+		// SDRAM to SRAM writing operation (All elements in row cache accessed)
+		// SRAM to WB reading operation (All elements in row cache accessed)
+		$info("Accessing addresses in SRAM's ROW_CACHE");
 		for(j = 0; j < image_width; j+=1)
 		begin
 			enable = 1'b1;
@@ -121,19 +123,28 @@ module tb_sram_address_calc
 			testBothModes();
 			clock(1);
 		end
-/*
+
+
 		mode = 1'b0;		
-		for(j = 0; j < 10; j+=1)
+		// For WB to SRAM writing operation    (image_width - 1 elements to be accessed)
+		// For SRAM to SDRAM reading operation (image_width - 1 elements to be accessed)
+		$info("Accessing addresses in SRAM's OUTPUT_ADDR");
+		for(j = 0; j < image_width - 1; j+=1)
 		begin
 			enable = 1'b1;
 			clock(1);
 			enable = 1'b0;
 			exp_outputAddr += 1;
-			testBothModes;
+			if(j == image_width - 2)
+			begin
+				exp_outputAddr = outputAddrStart;
+			end
+			testBothModes();
 			mode = 1'b0;
 			clock(1);
 		end
 
+/*
 		clearPulse();
 
 		for(j = 0; j < 10; j+=1)
