@@ -110,7 +110,7 @@ module tb_sram_address_calc
 		// SDRAM to SRAM writing operation (All elements in row cache accessed)
 		// SRAM to WB reading operation (All elements in row cache accessed)
 		$info("Accessing addresses in SRAM's ROW_CACHE");
-		for(j = 0; j < image_width; j+=1)
+		for(j = 0; j < image_width + 5; j+=1)
 		begin
 			enable = 1'b1;
 			clock(1);
@@ -129,7 +129,7 @@ module tb_sram_address_calc
 		// For WB to SRAM writing operation    (image_width - 1 elements to be accessed)
 		// For SRAM to SDRAM reading operation (image_width - 1 elements to be accessed)
 		$info("Accessing addresses in SRAM's OUTPUT_ADDR");
-		for(j = 0; j < image_width - 1; j+=1)
+		for(j = 0; j < image_width - 1 + 5; j+=1)
 		begin
 			enable = 1'b1;
 			clock(1);
@@ -144,31 +144,9 @@ module tb_sram_address_calc
 			clock(1);
 		end
 
-/*
+
 		clearPulse();
 
-		for(j = 0; j < 10; j+=1)
-		begin
-			enable = 1'b1;
-			clock(1);
-			enable = 1'b0;
-			exp_rowCache += 1;
-			testBothModes;
-			clock(1);
-		end
-
-		mode = 1'b0;		
-		for(j = 0; j < 10; j+=1)
-		begin
-			enable = 1'b1;
-			clock(1);
-			enable = 1'b0;
-			exp_outputAddr += 1;
-			testBothModes;
-			mode = 1'b0;
-			clock(1);
-		end
-*/
 		$info(" ^v^v^v^v^v^v^v^v^v^v Finished ^v^v^v^v^v^v^v^v^v^v^ ");
 	end
 
