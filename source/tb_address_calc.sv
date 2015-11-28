@@ -7,7 +7,7 @@
 // Description: Test Bench for top level address calculator
 `timescale 1ns / 100ps
 
-module tb_sram_address_calc
+module tb_address_calc
 ();
 	// Note: This test bench changes values on negedge
 
@@ -77,48 +77,58 @@ module tb_sram_address_calc
 	task initialize();
 		n_rst = 1'b1;
 		sram_mode = 1'b1;	// 1 -> rowCache ; 0 -> output
-		sdram_mode = 1'b0;	// 1 -> read mode; 0 -> write mode
+		sdram_mode = 1'b1;	// 1 -> read mode; 0 -> write mode
 
 		update = 1'b0;
 		start_flag = 1'b0;
 		image_width = 31'd30;
 
+		// inputs to DUT port mapping
 		rowCacheStart = 26'd0;
 		outputAddrStart = 26'd42;
-		sdram_startAddr = 16'd300;
-		sdram_finishAddr = 16'd3000;
-		
+		sdram_startAddr = 26'd300;
+		sdram_finishAddr = 26'd3000;
+
+		exp_sram_rowCache = rowCacheStart;
+		exp_sram_output = outputAddrStart;
+		exp_sdram_read = sdram_startAddr;
+		exp_sdram_write = sdram_finishAddr;
+			
 		clock(1);
-	endtask;		
+	endtask
 
 	task testBothModes();
-		mode = 1'b0;
+		sram_mode = 1'b0;
+		sdram_mode = 1'b0;
 		clock(1);
-		assert(sram_address == exp_outputAddr) else $error("on WRITE mode: sramAddr != finishAddr");
-		mode = 1'b1;
+		assert( sram_address == exp_sram_output) else $error("on OUTPUT_ADDR mode: sramAddr not as exp");
+		assert(sdram_address == exp_sdram_write) else $error("on WRITE mode: sdramAddr not as exp");
+		sram_mode = 1'b1;
+		sdram_mode = 1'b1;
 		clock(1);
-		assert(sram_address == exp_rowCache) else $error("on READ mode: sramAddr != startAddr");
+		assert( sram_address == exp_sram_rowCache) else $error("on ROW_CACHE mode: sramAddr not as exp");
+		assert(sdram_address == exp_sdram_read) else $error("on READ mode: sdramAddr not as exp");
 	endtask
 
 	task reset();
-		exp_rowCache = rowCacheStart;
-		exp_outputAddr = outputAddrStart;
+		exp_sram_rowCache = rowCacheStart;
+		exp_sram_output = outputAddrStart;
+		exp_sdram_read = sdram_startAddr;
+		exp_sdram_write = sdram_finishAddr;
 		n_rst = 1'b0;	
-		mode = 1'b1;
-		clock(10);
-		assert(sram_address == rowCacheStart) else $error("on RESET and READ mode: sramAddr != startAddr");
-		mode = 1'b0;
-		clock(4);
-		assert(sram_address == outputAddrStart) else $error("on RESET and WRITE mode: sramAddr != finishAddr");
+		testBothModes();
 		n_rst = 1'b1;	
+		clock(1);
 	endtask
 
-	task clearPulse();
-		exp_rowCache = rowCacheStart;
-		exp_outputAddr = outputAddrStart;
-		clear = 1'b1;	
+	task start_flag_pulse();
+		exp_sram_rowCache = rowCacheStart;
+		exp_sram_output = outputAddrStart;
+		exp_sdram_read = sdram_startAddr;
+		exp_sdram_write = sdram_finishAddr;
+		start_flag = 1'b1;	
 		clock(1);
-		clear = 1'b0;
+		start_flag = 1'b0;
 
 		testBothModes();
 	endtask
@@ -128,8 +138,9 @@ module tb_sram_address_calc
 	initial
 	begin
 		initialize();
+		clock(4);
 		reset();
-
+/*
 		mode = 1'b1;
 		// SDRAM to SRAM writing operation (All elements in row cache accessed)
 		// SRAM to WB reading operation (All elements in row cache accessed)
@@ -169,8 +180,8 @@ module tb_sram_address_calc
 		end
 
 
-		clearPulse();
-
+		start_flag_pulse();
+*/
 		$info(" ^v^v^v^v^v^v^v^v^v^v Finished ^v^v^v^v^v^v^v^v^v^v^ ");
 	end
 
