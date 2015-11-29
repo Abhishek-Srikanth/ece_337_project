@@ -13,8 +13,9 @@ module address_calc
 
 	input wire sram_mode,
 	input wire sdram_mode,
+	input wire sram_update,
+	input wire sdram_update,
 
-	input wire update,
 	input wire start_flag,
 	input wire [12:0] image_width,
 
@@ -32,7 +33,7 @@ sdram_address_calc sdramAddrCalc
 	.clk					(clk),
 	.n_rst					(n_rst),
 	.mode					(sdram_mode),
-	.enable					(enable),
+	.enable					(sdram_update),
 	.load					(start_flag),
 	.start_address			(start_address_sdram),
 	.finish_address			(finish_address_sdram),
@@ -44,7 +45,7 @@ sram_address_calc sramAddrCalc
 	.clk					(clk),
 	.n_rst					(n_rst),
 	.mode					(sram_mode),
-	.enable					(enable),
+	.enable					(sram_update),
 	.clear					(start_flag),
 	.image_width			(image_width),
 	.sram_rowCacheStart		(rowCache_address_sram),
