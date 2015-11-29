@@ -11,4 +11,14 @@ https://help.github.com/articles/generating-ssh-keys/
 
 # File Directory
 Using same file directory as in ece 337
-Source code will be located in Source Folder
+
+./
+  source/
+    _source code in here_
+  mapped/
+  source_work/
+  analyzed/
+  docs/
+  reports/
+  schematics/
+  scripts/
