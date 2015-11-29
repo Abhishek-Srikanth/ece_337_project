@@ -25,7 +25,8 @@ module tb_address_calc
 	reg n_rst;
 	reg sram_mode;
 	reg sdram_mode;
-	reg update;
+	reg sram_update;
+	reg sdram_update;
 	reg start_flag;
 	reg [12:0] image_width;
 
@@ -53,7 +54,9 @@ module tb_address_calc
 		.sram_mode				(sram_mode),
 		.sdram_mode				(sdram_mode),
 
-		.update					(update),
+		.sdram_update			(sdram_update),
+		.sram_update			(sram_update),
+
 		.start_flag				(start_flag),
 		.image_width			(image_width),
 
@@ -79,7 +82,8 @@ module tb_address_calc
 		sram_mode = 1'b1;	// 1 -> rowCache ; 0 -> output
 		sdram_mode = 1'b1;	// 1 -> read mode; 0 -> write mode
 
-		update = 1'b0;
+		sram_update = 1'b0;
+		sdram_update = 1'b0;
 		start_flag = 1'b0;
 		image_width = 31'd30;
 
@@ -140,48 +144,78 @@ module tb_address_calc
 		initialize();
 		clock(4);
 		reset();
-/*
-		mode = 1'b1;
-		// SDRAM to SRAM writing operation (All elements in row cache accessed)
-		// SRAM to WB reading operation (All elements in row cache accessed)
-		$info("Accessing addresses in SRAM's ROW_CACHE");
-		for(j = 0; j < image_width + 5; j+=1)
+
+		$info("to simulate operation of SDRAM being read and SRAM being written into");
+		$info("it also simulates operation of SDRAM being read to WB and SRAM being read to WB");
+		sdram_mode = 1'b1; // read mode
+		sram_mode = 1'b1;  // row cache mode
+		for(j = 0; j < image_width; j+=1)
 		begin
-			enable = 1'b1;
+			sdram_update = 1'b1;
 			clock(1);
-			enable = 1'b0;
-			exp_rowCache += 1;
+			sdram_update = 1'b0;
+			exp_sdram_read += 1;
+			
+			testBothModes();			
+			sram_update = 1'b1;
+			clock(1);
+			sram_update = 1'b0;
+			exp_sram_rowCache += 1;
+			
 			if(j == image_width - 1)
-			begin
-				exp_rowCache = rowCacheStart;
-			end
+				exp_sram_rowCache = rowCacheStart;
+
 			testBothModes();
-			clock(1);
-		end
+			clock(1);						
+		end		
 
-
-		mode = 1'b0;		
-		// For WB to SRAM writing operation    (image_width - 1 elements to be accessed)
-		// For SRAM to SDRAM reading operation (image_width - 1 elements to be accessed)
-		$info("Accessing addresses in SRAM's OUTPUT_ADDR");
-		for(j = 0; j < image_width - 1 + 5; j+=1)
+		$info("To simulate operation of writing into output addr of sram (no-op to sdram)");
+		sdram_mode = 1'b1; // read mode
+		sram_mode = 1'b0;  // output address mode
+		for(j = 0; j < image_width - 1; j+=1)
 		begin
-			enable = 1'b1;
+			sram_update = 1'b1;
 			clock(1);
-			enable = 1'b0;
-			exp_outputAddr += 1;
+			sram_update = 1'b0;
+			exp_sram_output += 1;
+			
 			if(j == image_width - 2)
-			begin
-				exp_outputAddr = outputAddrStart;
-			end
+				exp_sram_output = outputAddrStart;
+
 			testBothModes();
-			mode = 1'b0;
+			sram_mode = 1'b0;
+			sdram_mode = 1'b1;
+			clock(1);						
+		end		
+
+		$info("to simulate operation of SDRAM being written into and SRAM's output being read from");
+		sdram_mode = 1'b0; // write mode
+		sram_mode = 1'b0;  // output mode
+		for(j = 0; j < image_width; j+=1)
+		begin
+			sram_update = 1'b1;
 			clock(1);
-		end
+			sram_update = 1'b0;
+			exp_sram_output += 1;
+			
+			if(j == image_width - 2)
+				exp_sram_output = outputAddrStart;
+
+			testBothModes();
+			sram_mode = 1'b0;
+			sdram_mode = 1'b0;
+			
+			sdram_update = 1'b1;
+			clock(1);
+			sdram_update = 1'b0;
+			exp_sdram_write += 1;
+			
+			testBothModes();			
+			sram_mode = 1'b0;
+			sdram_mode = 1'b0;				
+		end	
 
 
-		start_flag_pulse();
-*/
 		$info(" ^v^v^v^v^v^v^v^v^v^v Finished ^v^v^v^v^v^v^v^v^v^v^ ");
 	end
 
