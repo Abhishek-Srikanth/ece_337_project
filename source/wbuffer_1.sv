@@ -26,7 +26,7 @@ module wbuffer
    reg [7:0] 	    wb_3_nxt;
    reg [7:0] 	    wb_4_curr;
    reg [7:0] 	    wb_4_nxt;
-   reg 		    move_chk;
+   //reg 		    move_chk;
    
    always_ff @ (posedge clk, negedge nrst)
      begin
