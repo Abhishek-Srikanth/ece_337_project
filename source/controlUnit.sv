@@ -41,6 +41,20 @@ module controlUnit
 		| 1 | 2 |
 		| 3 | 4 |
 */
+localparam MODE_WB_NOP	= 3'b000;
+localparam MODE_WB_S1	= 3'd1;
+localparam MODE_WB_S2	= 3'd2;
+localparam MODE_WB_SD3	= 3'd3;
+localparam MODE_WB_SD4	= 3'd4;
+localparam MODE_WB_SHFT	= 3'b101;
+
+localparam MODE_SRAM_READ	= 1;
+localparam MODE_SRAM_WRITE	= 0;
+
+localparam MODE_ADDRCALC_SRAM_ROWCACHE	= 1;
+localparam MODE_ADDRCALC_SRAM_OUPUTARR	= 0;
+localparam MODE_ADDRCALC_SDRAM_READ		= 1;
+localparam MODE_ADDRCALC_SDRAM_WRITE	= 0;
 
 typedef enum {
 				idle, 						// idle state: waiting for start flag
@@ -317,133 +331,498 @@ begin: outputLogic
 	case(state)
 		idle: 						// idle state: waiting for start flag
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		firstRow_readSDRAM: 		// sets addr_calc mode ; pulse read_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		firstRow_readSDRAM_dummy:	//     -- for pulsing read_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		firstRow_writeSRAM: 		// sets addr_calc mode ; set SRAM_mode ; pulse SRAM_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		firstRow_updateCounters: 	// pulse i_enable ; pulse addr_calc_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		updateCounter_j:			// pulse j_en (links to finish state)
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 			
 		firstCol_readSDRAM: 		// read for WB_3: set addr_calc mode ; pulse read_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		firstCol_readSDRAM_dummy: 	//     -- for pulsing read_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		firstCol_writeWB_1: 		// write to WB_3: set WB mode ; pulse WB_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		firstCol_readSRAM: 			// read for WB_1: set addr_calc mode ; set SRAM_mode ; pulse SRAM_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		firstCol_readSRAM_dummy:  	//     -- for pulsing read_en of SRAM
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		firstCol_writeWB_2_updateCounters:	// write to WB_1: set WB mode ; pulse WB_en, i_en, addr_calc_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		anyCol_readSDRAM: 			// read for WB_4: set addr_col mode ; pulse read_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		anyCol_readSDRAM_dummy:		//     -- for pulsing read_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		anyCol_writeWB_fromSDRAM: 	// write to WB_4: set WB mode ; pulse WB_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		anyCol_readSRAM: 			// read for WB_2: set addr_calc mdoe ; set SRAM_mode ; pulse SRAM_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		anyCol_readSRAM_dummy:		//     -- for pulsing read_en of SRAM
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		anyCol_writeWB_fromSRAM: 	// write to WB_2: set WB mode ; pulse read_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		writeSRAM_WB3: 				// set addr_calc mode ; set SRAM mode ; pulse SRAM_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		writeSRAM_outputImg:		// set addr_calc mode ; set SRAM mode ; pulse SRAM_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		WBShift_updateCounters: 	// set WB_mode ; pulse WB_en ; pulse i_en ; pulse addr_calc_en	
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		outputImg_readSRAM: 		// set addr_calc mode ; set SRAM mode ; pulse SRAM_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		outputImg_readSRAM_dummy:	//     -- for pulsing read_en of SRAM
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		outputImg_writeSDRAM:		// set addr_calc mode ; pulse SDRAM write_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		outputImg_updateCounters:	// pulse i_wr_en ; pulse addr_calc_en
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
 		finish:						// set finish_flag
 		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
 
+			mode_WB = MODE_WB_NOP;
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_WRITE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
+
 	endcase			
 end
 
