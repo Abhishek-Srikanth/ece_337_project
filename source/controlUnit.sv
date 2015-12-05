@@ -467,7 +467,7 @@ begin: outputLogic
 			write_en_sdram = 1'b0;
 			finish_flag = 1'b0;
 
-			mode_WB = MODE_WB_S3;			// preparing for WB_3 write
+			mode_WB = MODE_WB_SD3;			// preparing for WB_3 write
 			mode_sram = MODE_SRAM_READ;
 			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
 			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
@@ -486,7 +486,7 @@ begin: outputLogic
 			write_en_sdram = 1'b0;
 			finish_flag = 1'b0;
 
-			mode_WB = MODE_WB_S3;			// preparing for WB_3 write
+			mode_WB = MODE_WB_SD3;			// preparing for WB_3 write
 			mode_sram = MODE_SRAM_READ;
 			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
 			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
@@ -505,7 +505,7 @@ begin: outputLogic
 			write_en_sdram = 1'b0;
 			finish_flag = 1'b0;
 
-			mode_WB = MODE_WB_S3;			// For WB_3 write
+			mode_WB = MODE_WB_SD3;			// For WB_3 write
 			mode_sram = MODE_SRAM_READ;
 			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
 			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
@@ -582,7 +582,7 @@ begin: outputLogic
 			write_en_sdram = 1'b0;
 			finish_flag = 1'b0;
 
-			mode_WB = MODE_WB_S4;			// For WB_4 write
+			mode_WB = MODE_WB_SD4;			// For WB_4 write
 			mode_sram = MODE_SRAM_READ;
 			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
 			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
@@ -601,7 +601,7 @@ begin: outputLogic
 			write_en_sdram = 1'b0;
 			finish_flag = 1'b0;
 
-			mode_WB = MODE_WB_S4;			// preparing for WB_4 write
+			mode_WB = MODE_WB_SD4;			// preparing for WB_4 write
 			mode_sram = MODE_SRAM_READ;
 			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
 			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
@@ -620,7 +620,7 @@ begin: outputLogic
 			write_en_sdram = 1'b0;
 			finish_flag = 1'b0;
 
-			mode_WB = MODE_WB_S4;			// preparing for WB_4 write
+			mode_WB = MODE_WB_SD4;			// preparing for WB_4 write
 			mode_sram = MODE_SRAM_READ;
 			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
 			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
@@ -639,7 +639,7 @@ begin: outputLogic
 			write_en_sdram = 1'b0;
 			finish_flag = 1'b0;
 
-			mode_WB = MODE_WB_S4;			// For WB_4 write
+			mode_WB = MODE_WB_SD4;			// For WB_4 write
 			mode_sram = MODE_SRAM_READ;
 			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
 			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
