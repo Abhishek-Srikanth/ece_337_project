@@ -51,10 +51,10 @@ localparam MODE_WB_SHFT	= 3'b101;
 localparam MODE_SRAM_READ	= 1;
 localparam MODE_SRAM_WRITE	= 0;
 
-localparam MODE_ADDRCALC_SRAM_ROWCACHE	= 1;
-localparam MODE_ADDRCALC_SRAM_OUPUTARR	= 0;
-localparam MODE_ADDRCALC_SDRAM_READ		= 1;
-localparam MODE_ADDRCALC_SDRAM_WRITE	= 0;
+localparam MODE_ADDRCALC_SRAM_ROWCACHE	= 1'b1;
+localparam MODE_ADDRCALC_SRAM_OUTPUTARR	= 1'b0;
+localparam MODE_ADDRCALC_SDRAM_READ		= 1'b1;
+localparam MODE_ADDRCALC_SDRAM_WRITE	= 1'b0;
 
 typedef enum {
 				idle, 						// idle state: waiting for start flag
@@ -302,7 +302,7 @@ begin : nextStateLogic
 
 		outputImg_writeSDRAM:		// write output image into SDRAM
 		begin
-			nextState = outputImg_udpateCounters;
+			nextState = outputImg_updateCounters;
 		end		
 
 		outputImg_updateCounters:	// update i_wr and check rollover
@@ -842,7 +842,7 @@ begin: outputLogic
 		begin
 			enable_i = 1'b0;
 			enable_j = 1'b0;
-			enable_i_wr = 1'b0;
+			enable_i_wr = 1'b1;
 			enable_addr_calc_sram = 1'b1;	// <-- pulse on
 			enable_addr_calc_sdram = 1'b1;	// <-- pulse on
 			enable_WB = 1'b0;
