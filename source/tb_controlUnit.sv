@@ -142,6 +142,7 @@ module tb_controlUnit
 		// start in read firstCol sdram mode
 		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("not in SRAM addr mode rowCache");
 		assert(enable_sram == 1'b1) else $error("sram not enabled");	
+		assert(mode_sram == MODE_SRAM_READ) else $error("sram not in read mode");
 		clock(1);
 		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("not in SRAM addr mode rowCache");
 		assert(enable_sram == 1'b0) else $error("sram enable not de-asserted, must be a pulse");
@@ -181,6 +182,60 @@ module tb_controlUnit
 	endtask
 
 	task anyColOperations();
+		assert(mode_sram == MODE_SRAM_READ) else $error("sram not in read mode");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("addrCalc not pointing to rowCache");
+		assert(enable_sram == 1'b1) else $error("sram not been enabled for read operation");
+		
+		clock(1);
+		assert(mode_sram == MODE_SRAM_READ) else $error("sram not in read mode");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("addrCalc not pointing to rowCache");
+		assert(enable_sram == 1'b0) else $error("sram enable to be pulsed, it is still high though");
+		
+		dataRead_sram = 1'b1;
+		clock(1);
+		dataRead_sram = 1'b0;
+		assert(mode_WB == MODE_WB_S2) else $error("mode of WB is not WB_2");
+		assert(enable_WB == 1'b1) else $error("WB has not been enabled");
+		
+		clock(1);
+		assert(enable_WB == 1'b0) else $error("WB enable still high, should be 1 clock pulse");
+		assert(read_en_sdram == 1'b1) else $error("sdram read_en not high");
+		assert(mode_addr_calc_sdram == MODE_ADDRCALC_SDRAM_READ) else $error("SDRAM addrCalc mode is not on READ");
+		clock(1);
+		assert(read_en_sdram == 1'b0) else $error("sdram read_en still high, must be 1 clock pulse only");
+		assert(mode_addr_calc_sdram == MODE_ADDRCALC_SDRAM_READ) else $error("SDRAM addrCalc mode is not on READ");
+		
+		dataRead_sdram = 1'b1;
+		clock(1);
+		dataRead_sdram = 1'b0;
+		assert(mode_WB == MODE_WB_SD4) else $error("WB not on WB_4 mode");
+		assert(enable_WB == 1'b1) else $error("WB enable not high");
+		assert(mode_sram == MODE_SRAM_WRITE) else $error("sram mode not on write");
+		assert(enable_sram == 1'b1) else $error("SRAM enable not high");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("addrCalc addr not on rowCache");
+		
+		clock(1);
+		assert(enable_WB == 1'b0) else $error("WB enable not high");
+		assert(mode_sram == MODE_SRAM_WRITE) else $error("sram mode not on write");
+		assert(enable_sram == 1'b1) else $error("SRAM enable not high");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_OUTPUTARR) else $error("addrCalc addr not on outputArr");
+
+		clock(1);
+		assert(enable_sram == 1'b0) else $error("SRAM enable not low yet, must only be 1 clock pulse");
+		assert(enable_addr_calc_sram == 1'b1) else $error("sram addrCalc not enabled");
+		assert(enable_addr_calc_sdram == 1'b1) else $error("sdram addrCalc not enabled");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_OUTPUTARR) else $error("SRAM wrong addr being updated");
+		assert(mode_addr_calc_sdram == MODE_ADDRCALC_SDRAM_READ) else $error("SDRAM wrong addr being updated");
+		
+		clock(1);
+		assert(enable_i == 1'b1) else $error("i counter not being enabled");
+		assert(enable_addr_calc_sram == 1'b1) else $error("sram addrCalc not enabled");
+		assert(enable_addr_calc_sdram == 1'b0) else $error("sdram addrCalc not disabled, must be 1 clock pulse");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("SRAM wrong addr being updated");
+
+		// After clock, must check if enable_addr_calc_sram/enable_i is disabled or not TODO
+		// before/after clock, rollover_values must be set, hence not in here itself
+
 	endtask
 
 	initial
