@@ -129,11 +129,112 @@ module tb_controlUnit
 		clock(1);
 	endtask;
 
+	task firstRow_updateCounters();
+		assert(enable_sram == 1'b0) else $error("sram write enable not pulsing, very long");
+		assert(enable_i == 1'b1) else $error("expected i_enable to pulse");
+		assert(enable_addr_calc_sdram == 1'b1) else $error("expected sdram addr Calc enable to pulse");
+		assert(enable_addr_calc_sram == 1'b1) else $error("expected sram addr Calc enable to pulse");
+		assert(mode_addr_calc_sdram == MODE_ADDRCALC_SDRAM_READ) else $error("read address not being updated in sdram");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("rowcache not being updated in sram");
+	endtask
+
+	task firstColOperations();
+		// start in read firstCol sdram mode
+		assert(mode_addr_calc_sdram == MODE_ADDRCALC_SDRAM_READ) else $error("not in SDRAM read addr mode");
+		assert(read_en_sdram == 1'b1) else $error("read_en of SDRAM not enabled");
+		clock(1);
+		assert(mode_addr_calc_sdram == MODE_ADDRCALC_SDRAM_READ) else $error("not in SDRAM read addr mode");
+		assert(read_en_sdram == 1'b0) else $error("read_en of SDRAM has not pulsed, still high after 1 clock");
+		
+		dataRead_sdram = 1'b1;
+		clock(1);
+		dataRead_sdram = 1'b0;
+		assert(enable_WB == 1'b1) else $error("WB not enabled");
+		assert(mode_WB == MODE_WB_SD3) else $error("WB not on mode SD3 _write to bottom left from sdram_");
+		
+		clock(1);
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("not in SRAM addr mode rowCache");
+		assert(enable_sram == 1'b1) else $error("sram not enabled");	
+		clock(1);
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("not in SRAM addr mode rowCache");
+		assert(enable_sram == 1'b0) else $error("sram enable not de-asserted, must be a pulse");
+		
+		dataRead_sram = 1'b1;
+		clock(1);
+		dataRead_sram = 1'b0;
+		assert(enable_WB == 1'b1) else $error("WB not enabled");
+		assert(mode_WB == MODE_WB_S1) else $error("Correct mode for WB not set");
+		
+		clock(1);
+		assert(enable_WB == 1'b0) else $error("WB enable still high, must pulse");
+		assert(enable_i == 1'b1) else $error("enable for i is not being pulsed");
+		assert(enable_addr_calc_sram == 1'b1) else $error("enable for addrCalc SRAM not high");
+		assert(enable_addr_calc_sdram == 1'b1) else $error("enable for addrCalc SDRAM not high");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("addrCalc SRAM mode not correct");
+		assert(mode_addr_calc_sdram == MODE_ADDRCALC_SDRAM_READ) else $error("addrCalc SDRAM mode not correct");
+
+		clock(1);
+	endtask
+
+	task anyColOperations();
+	endtask
+
 	initial
 	begin
 		initialize();
 		clock(2);
 		reset();
+		
+		// following test for specifically a 2x2 image since this covers all imp cases that need to be tested
+		// start of a flow of operations
+		start_flag = 1'b1;
+		clock(1);
+		start_flag = 1'b0;
+		assert(read_en_sdram == 1'b1) else $error("Read_en to SDRAM not provided");
+		assert(mode_addr_calc_sdram == MODE_ADDRCALC_SDRAM_READ) else $error("Addr calc not in READ mode");
+		
+		clock(1);
+		assert(read_en_sdram == 1'b0) else $error("Read_en should pulse for only 1 clock");
+		clock(3);
+		
+		dataRead_sdram = 1'b1;
+		clock(1); // firstRow sram write operation
+		dataRead_sdram = 1'b0;
+		assert(enable_sram == 1'b1) else $error("sram write enable not provided");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("sram addr mode not on rowCache");
+		assert(mode_sram == MODE_SRAM_WRITE) else $error("sram not on write mode");
+
+		clock(1); // firstRow update counters
+		firstRow_updateCounters();
+		
+		rollover_i = 1'b0;
+		clock(1);
+		assert(read_en_sdram == 1'b1) else $error("Read_en should pulse for only 1 clock");
+		assert(mode_addr_calc_sdram == MODE_ADDRCALC_SDRAM_READ) else $error("Addr calc not in READ mode");
+
+		dataRead_sdram = 1'b1;
+		clock(1); // directly to firstRow_sram_write, doesn't usually happen but this time datareadvalid comes quickly
+		dataRead_sdram = 1'b0;
+		assert(read_en_sdram == 1'b0) else $error("read_en should pulse for only 1 clock, not de-asserted correctly");
+		assert(enable_sram == 1'b1) else $error("sram write enable not provided");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("sram addr mode not on rowCache");
+		assert(mode_sram == MODE_SRAM_WRITE) else $error("sram not on write mode");
+
+		clock(1); // firstRow update counters
+		firstRow_updateCounters();
+
+		rollover_i = 1'b1;
+		clock(1);
+		rollover_i = 1'b0;
+		assert(enable_j == 1'b1) else $error("j counter has not been enabled");
+		
+		rollover_j = 1'b0;
+		clock(1);
+		rollover_j = 1'b1;
+			
+		firstColOperations(); // final clock into next read operation already included in the task
+		anyColOperations();
+		$info("mudinjaachu");
 	end	
 
 endmodule
