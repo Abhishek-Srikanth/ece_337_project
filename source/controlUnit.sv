@@ -296,7 +296,7 @@ begin : nextStateLogic
 		begin
 			if(dataRead_sram == 1'b1)
 			begin
-				nextState = outputImg_readSRAM;
+				nextState = outputImg_writeSDRAM;
 			end	
 			else
 			begin
@@ -307,7 +307,7 @@ begin : nextStateLogic
 		begin
 			if(dataRead_sram == 1'b1)
 			begin
-				nextState = outputImg_readSRAM;
+				nextState = outputImg_writeSDRAM;
 			end
 		end
 
