@@ -64,13 +64,15 @@ typedef enum {
 				firstRow_updateCounters, 	// pulse i_enable ; pulse addr_calc_en
 				updateCounter_j,			// pulse j_en (links to finish state)
 
-				firstCol_readSDRAM, 		// read for WB_3: set addr_calc mode ; pulse read_en
-				firstCol_readSDRAM_dummy, 	//     -- for pulsing read_en
-				firstCol_writeWB_1, 		// write to WB_3: set WB mode ; pulse WB_en
 				firstCol_readSRAM, 			// read for WB_1: set addr_calc mode ; set SRAM_mode ; pulse SRAM_en
 				firstCol_readSRAM_dummy,  	//     -- for pulsing read_en of SRAM
-				firstCol_writeSRAM_WB3,		// set addr_calc mode ; set SRAM mode ; pulse SRAM_en
-				firstCol_writeWB_2_updateCounters,	// write to WB_1: set WB mode ; pulse WB_en, i_en, addr_calc_en
+				firstCol_writeWB_1,
+				firstCol_readSDRAM, 		// read for WB_3: set addr_calc mode ; pulse read_en
+				firstCol_readSDRAM_dummy, 	//     -- for pulsing read_en
+				//firstCol_writeWB_1, 		// write to WB_3: set WB mode ; pulse WB_en
+				//firstCol_writeSRAM_WB3,		// set addr_calc mode ; set SRAM mode ; pulse SRAM_en
+				firstCol_writeWB3_SRAM,	    // write to WB_3, write to SRAM
+				firstCol_updateCounters,	// updates i_en and addr_calc_en
 
 				anyCol_readSRAM, 			// read for WB_2: set addr_calc mdoe ; set SRAM_mode ; pulse SRAM_en
 				anyCol_readSRAM_dummy,		//     -- for pulsing read_en of SRAM
@@ -147,43 +149,19 @@ begin : nextStateLogic
 		begin
 			if(rollover_j == 1'b0)
 			begin
-				nextState = firstCol_readSDRAM;
+				nextState = firstCol_readSRAM;
 			end
 			else
 			begin
 				nextState = finish;
 			end
 		end	
-	
-		firstCol_readSDRAM: 		// read from SDRAM into the Window Buffer element 3
-		begin
-			if(dataRead_sdram == 1'b1)
-			begin
-				nextState = firstCol_writeWB_1;
-			end	
-			else
-			begin
-				nextState = firstCol_readSDRAM_dummy;
-			end
-		end	
-		firstCol_readSDRAM_dummy: // dummy for pulsing read_en
-		begin
-			if(dataRead_sdram == 1'b1)
-			begin
-				nextState = firstCol_writeWB_1;
-			end
-		end
-	
-		firstCol_writeWB_1: 		// write to WB_3 (bottom left) the value read from SDRAM
-		begin
-			nextState = firstCol_readSRAM;
-		end	
 
 		firstCol_readSRAM: 		// read from SRAM into Window Buffer element 1
 		begin
 			if(dataRead_sram == 1'b1)
 			begin
-				nextState = firstCol_writeSRAM_WB3;
+				nextState = firstCol_writeWB_1;
 			end	
 			else
 			begin
@@ -194,17 +172,46 @@ begin : nextStateLogic
 		begin
 			if(dataRead_sram == 1'b1)
 			begin
-				nextState = firstCol_writeSRAM_WB3;
+				nextState = firstCol_writeWB_1;
 			end
 		end
 
+		firstCol_writeWB_1:
+		begin
+			nextState = firstCol_readSDRAM;
+		end
+	
+		firstCol_readSDRAM: 		// read from SDRAM into the Window Buffer element 3
+		begin
+			if(dataRead_sdram == 1'b1)
+			begin
+				nextState = firstCol_writeWB3_SRAM;
+			end	
+			else
+			begin
+				nextState = firstCol_readSDRAM_dummy;
+			end
+		end	
+		firstCol_readSDRAM_dummy: // dummy for pulsing read_en
+		begin
+			if(dataRead_sdram == 1'b1)
+			begin
+				nextState = firstCol_writeWB3_SRAM;
+			end
+		end
+	
+		firstCol_writeWB3_SRAM: 		// write to WB_3 (bottom left) the value read from SDRAM
+		begin  							// write to SRAM merged with this
+			nextState = firstCol_updateCounters; 
+		end	
+/*
 		firstCol_writeSRAM_WB3:
 		begin
 			nextState = firstCol_writeWB_2_updateCounters;
 		end
-		
-		firstCol_writeWB_2_updateCounters:	// write to WB_1 (top left) the value read from SRAM
-		begin								// also used to update counter
+*/
+		firstCol_updateCounters:	// update counters
+		begin
 			nextState = anyCol_readSRAM;
 		end	
 
@@ -457,8 +464,8 @@ begin: outputLogic
 			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;	// preparing for READ ops
 			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;	// preparing for READ ops
 		end
-			
-		firstCol_readSDRAM: 		// read for WB_3: set addr_calc mode ; pulse read_en (y)
+	
+		firstCol_readSRAM: 			// read for WB_1: set addr_calc mode ; set SRAM_mode ; pulse SRAM_en (y)
 		begin
 			enable_i = 1'b0;
 			enable_j = 1'b0;				// <-- pulse off
@@ -466,63 +473,6 @@ begin: outputLogic
 			enable_addr_calc_sram = 1'b0;
 			enable_addr_calc_sdram = 1'b0;
 			enable_WB = 1'b0;
-			enable_sram = 1'b0;
-			read_en_sdram = 1'b1;			// <-- pulse on
-			write_en_sdram = 1'b0;
-			finish_flag = 1'b0;
-
-			mode_WB = MODE_WB_SD3;			// preparing for WB_3 write
-			mode_sram = MODE_SRAM_READ;
-			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
-			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
-		end
-
-		firstCol_readSDRAM_dummy: 	//     -- for pulsing read_en (y)
-		begin
-			enable_i = 1'b0;
-			enable_j = 1'b0;
-			enable_i_wr = 1'b0;
-			enable_addr_calc_sram = 1'b0;
-			enable_addr_calc_sdram = 1'b0;
-			enable_WB = 1'b0;
-			enable_sram = 1'b0;
-			read_en_sdram = 1'b0;			// <-- pulse off
-			write_en_sdram = 1'b0;
-			finish_flag = 1'b0;
-
-			mode_WB = MODE_WB_SD3;			// preparing for WB_3 write
-			mode_sram = MODE_SRAM_READ;
-			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
-			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
-		end
-
-		firstCol_writeWB_1: 		// write to WB_3: set WB mode ; pulse WB_en (y)
-		begin
-			enable_i = 1'b0;
-			enable_j = 1'b0;
-			enable_i_wr = 1'b0;
-			enable_addr_calc_sram = 1'b0;
-			enable_addr_calc_sdram = 1'b0;
-			enable_WB = 1'b1;				// <-- pulse on
-			enable_sram = 1'b0;
-			read_en_sdram = 1'b0;			// <-- pulse off
-			write_en_sdram = 1'b0;
-			finish_flag = 1'b0;
-
-			mode_WB = MODE_WB_SD3;			// For WB_3 write
-			mode_sram = MODE_SRAM_READ;
-			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
-			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
-		end
-
-		firstCol_readSRAM: 			// read for WB_1: set addr_calc mode ; set SRAM_mode ; pulse SRAM_en (y)
-		begin
-			enable_i = 1'b0;
-			enable_j = 1'b0;
-			enable_i_wr = 1'b0;
-			enable_addr_calc_sram = 1'b0;
-			enable_addr_calc_sdram = 1'b0;
-			enable_WB = 1'b0;				// <-- pulse off
 			enable_sram = 1'b1;				// <-- pulse on
 			read_en_sdram = 1'b0;
 			write_en_sdram = 1'b0;
@@ -553,7 +503,83 @@ begin: outputLogic
 			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
 
-		firstCol_writeSRAM_WB3:
+		firstCol_writeWB_1:  	//  write value from SRAM into WB_1 (top left)
+		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b1;				// <-- pulse on
+			enable_sram = 1'b0;	
+			read_en_sdram = 1'b0;
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
+
+			mode_WB = MODE_WB_S1;			// for WB_1 write
+			mode_sram = MODE_SRAM_READ;
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
+		end
+		
+		firstCol_readSDRAM: 		// read for WB_3 and SRAM: set addr_calc mode ; pulse read_en (y)
+		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;				// <-- pulse off
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b1;			// <-- pulse on
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
+
+			mode_WB = MODE_WB_SD3;			// preparing for WB_3 write
+			mode_sram = MODE_SRAM_WRITE;	// preparing for SRAM write
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
+		end
+
+		firstCol_readSDRAM_dummy: 	//     -- for pulsing read_en (y)
+		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b0;
+			enable_sram = 1'b0;
+			read_en_sdram = 1'b0;			// <-- pulse off
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
+
+			mode_WB = MODE_WB_SD3;			// preparing for WB_3 write
+			mode_sram = MODE_SRAM_WRITE;	// preparing for SRAM write
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
+		end
+
+		firstCol_writeWB3_SRAM: 		// write to WB_3: set WB mode ; pulse WB_en (y)
+		begin
+			enable_i = 1'b0;
+			enable_j = 1'b0;
+			enable_i_wr = 1'b0;
+			enable_addr_calc_sram = 1'b0;
+			enable_addr_calc_sdram = 1'b0;
+			enable_WB = 1'b1;				// <-- pulse on
+			enable_sram = 1'b1;				// <-- pulse on
+			read_en_sdram = 1'b0;			// <-- pulse off
+			write_en_sdram = 1'b0;
+			finish_flag = 1'b0;
+
+			mode_WB = MODE_WB_SD3;			// For WB_3 write operation
+			mode_sram = MODE_SRAM_WRITE;	// For SRAM write operation
+			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
+		end
+/*
+		firstCol_writeSRAM_WB3: 	// the value in WB_3 is written into SRAM // TODO merge with SDRAM to WB_3 write
 		begin
 			enable_i = 1'b0;
 			enable_j = 1'b0;
@@ -569,25 +595,25 @@ begin: outputLogic
 			mode_WB = MODE_WB_S1;			// preparing for WB_1 write
 			mode_sram = MODE_SRAM_WRITE;
 			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
-			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
-	
+			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;	
 		end
+*/
 
-		firstCol_writeWB_2_updateCounters:	// write to WB_1: set WB mode ; pulse WB_en, i_en, addr_calc_en (y)
+		firstCol_updateCounters:	//  i_en, addr_calc_en (y)
 		begin
 			enable_i = 1'b1;				// <-- pulse on
 			enable_j = 1'b0;
 			enable_i_wr = 1'b0;
 			enable_addr_calc_sram = 1'b1;	// <-- pulse on
 			enable_addr_calc_sdram = 1'b1;	// <-- pulse on
-			enable_WB = 1'b1;				// <-- pulse on
+			enable_WB = 1'b0;				// <-- pulse off
 			enable_sram = 1'b0;				// <-- pulse off
 			read_en_sdram = 1'b0;
 			write_en_sdram = 1'b0;
 			finish_flag = 1'b0;
 
-			mode_WB = MODE_WB_SD4;			// For WB_4 write
-			mode_sram = MODE_SRAM_READ;
+			mode_WB = MODE_WB_S2;
+			mode_sram = MODE_SRAM_READ;		// back to READ mode
 			mode_addr_calc_sram = MODE_ADDRCALC_SRAM_ROWCACHE;
 			mode_addr_calc_sdram = MODE_ADDRCALC_SDRAM_READ;
 		end
