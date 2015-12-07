@@ -284,7 +284,7 @@ begin : nextStateLogic
 		begin
 			if(rollover_i == 1'b0)
 			begin
-				nextState = anyCol_readSDRAM;
+				nextState = anyCol_readSRAM;
 			end
 			else
 			begin
