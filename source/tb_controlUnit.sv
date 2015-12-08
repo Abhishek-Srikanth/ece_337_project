@@ -140,6 +140,7 @@ module tb_controlUnit
 
 	task firstColOperations();
 		// start in read firstCol sdram mode
+		$info("start firstCol operations");
 		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("not in SRAM addr mode rowCache");
 		assert(enable_sram == 1'b1) else $error("sram not enabled");	
 		assert(mode_sram == MODE_SRAM_READ) else $error("sram not in read mode");
@@ -182,6 +183,10 @@ module tb_controlUnit
 	endtask
 
 	task anyColOperations();
+		$info("Starting any Col operation");
+		assert(enable_i == 1'b0) else $error("Do not expect i to be updated here");
+		assert(enable_addr_calc_sram == 1'b0) else $error("sram addrCalc not expected to be enabled here");
+
 		assert(mode_sram == MODE_SRAM_READ) else $error("sram not in read mode");
 		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("addrCalc not pointing to rowCache");
 		assert(enable_sram == 1'b1) else $error("sram not been enabled for read operation");
@@ -233,9 +238,38 @@ module tb_controlUnit
 		assert(enable_addr_calc_sdram == 1'b0) else $error("sdram addrCalc not disabled, must be 1 clock pulse");
 		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("SRAM wrong addr being updated");
 
-		// After clock, must check if enable_addr_calc_sram/enable_i is disabled or not TODO
-		// before/after clock, rollover_values must be set, hence not in here itself
+		// rollover_values must be set on clock, hence not in here itself
 
+	endtask
+
+	task outputImgOperations();
+		$info("Start to ouptut row");
+		assert(enable_i == 1'b0) else $error("Do not expect i to be updated here");
+		assert(enable_i_wr == 1'b0) else $error("i_wr to be low here since it is a pulsed value");
+		assert(enable_addr_calc_sram == 1'b0) else $error("sram addrCalc not expected to be enabled here");
+
+		assert(enable_sram == 1'b1) else $error("sram is not enabled");
+		assert(mode_sram == MODE_SRAM_READ) else $error("sram not in read mode");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_OUTPUTARR) else $error("addrCalc not point to outputArr");
+		clock(1);
+		assert(enable_sram == 1'b0) else $error("sram is not disabled, must be 1 clock pulse");
+		assert(mode_sram == MODE_SRAM_READ) else $error("sram not in read mode");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_OUTPUTARR) else $error("addrCalc not point to outputArr");
+
+		dataRead_sram = 1'b1;
+		clock(1);
+		dataRead_sram = 1'b0;
+		assert(write_en_sdram == 1'b1) else $error("write enable to sdram not high");
+		
+		clock(1);
+		assert(enable_i_wr == 1'b1) else $error("i_wr not enabled for update");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_OUTPUTARR) else $error("addrCalc not on outputArr mode");
+		assert(mode_addr_calc_sdram == MODE_ADDRCALC_SDRAM_WRITE) else $error("sdram addrCalc not on write mode");
+		assert(enable_addr_calc_sram == 1'b1) else $error("sram addr not being updated");
+		assert(enable_addr_calc_sdram == 1'b1) else $error("sdram addr not being updated");
+	
+		// rollover_values must be set on clock, hence not in here itself
+		
 	endtask
 
 	initial
@@ -287,13 +321,83 @@ module tb_controlUnit
 		rollover_i = 1'b0;
 		assert(enable_j == 1'b1) else $error("j counter has not been enabled");
 		
+		// first row
 		rollover_j = 1'b0;
 		clock(1);
-		rollover_j = 1'b1;
-			
+		assert(enable_j == 1'b0) else $error("j counter has not been disabled, is to be a pulse");
+	
 		firstColOperations(); // final clock into next read operation already included in the task
+
 		anyColOperations();
-		$info("mudinjaachu");
+
+		rollover_i = 1'b0;
+		clock(1);
+		anyColOperations();
+
+		rollover_i = 1'b1;
+		clock(1);
+		rollover_i = 1'b0;
+		outputImgOperations();
+
+		rollover_i_wr = 1'b0;
+		clock(1);
+		outputImgOperations();
+	
+		rollover_i_wr = 1'b1;
+		clock(1);
+		rollover_i_wr = 1'b0;
+	
+		// operation on a row repeats
+		rollover_j = 1'b0;
+		clock(1);
+		assert(enable_j == 1'b0) else $error("j counter has not been disabled, is to be a pulse");
+	
+		firstColOperations(); // final clock into next read operation already included in the task
+
+		anyColOperations();
+
+		rollover_i = 1'b0;
+		clock(1);
+		anyColOperations();
+
+		rollover_i = 1'b1;
+		clock(1);
+		rollover_i = 1'b0;
+		outputImgOperations();
+
+		rollover_i_wr = 1'b0;
+		clock(1);
+		outputImgOperations();
+
+		rollover_i_wr = 1'b1;
+		clock(1);
+		rollover_i_wr = 1'b0;
+		assert(enable_j == 1'b1) else $error("j row counter not getting updated");
+
+		rollover_j = 1'b1;
+		clock(1);
+		rollover_j = 1'b0;
+		assert(finish_flag == 1'b1) else $error("finish flag not asserted");
+		
+		clock(1);
+		// following is a check for idle state
+		assert(enable_i == DISABLED) else $error("enable_i is not disabled");
+		assert(enable_j == DISABLED) else $error("enable_j is not disabled");
+		assert(enable_i_wr == DISABLED) else $error("enable_i_wr is not disabled");
+		assert(enable_addr_calc_sram == DISABLED) else $error("enable_addr_calc_sram is not disabled");
+		assert(enable_addr_calc_sdram == DISABLED) else $error("enable_addr_calc_sdram is not disabled");
+		assert(enable_WB == DISABLED) else $error("enable_WB is not disabled");
+		assert(enable_sram == DISABLED) else $error("enable_sram is not disabled");
+		assert(read_en_sdram == DISABLED) else $error("read_en_sdram is not disabled");
+		assert(write_en_sdram == DISABLED) else $error("write_en_sdram is not disabled");
+		assert(mode_addr_calc_sram == MODE_ADDRCALC_SRAM_ROWCACHE) else $error("AddrModeSRAM not rowcache");
+		assert(mode_addr_calc_sdram == MODE_ADDRCALC_SDRAM_READ) else $error("AddrModeSDRAM not read");
+		assert(mode_WB == MODE_WB_NOP) else $error("mode WB not NOP");
+		assert(mode_sram == MODE_SRAM_WRITE) else $error("mode SRAM not Write");
+		assert(finish_flag == DISABLED) else $error("");
+
+
+		$info("mudichaachu");
 	end	
 
 endmodule
