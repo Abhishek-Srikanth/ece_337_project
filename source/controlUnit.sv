@@ -899,7 +899,7 @@ begin: outputLogic
 			enable_sram = 1'b0;
 			read_en_sdram = 1'b0;
 			write_en_sdram = 1'b0;
-			finish_flag = 1'b0;
+			finish_flag = 1'b1;
 
 			mode_WB = MODE_WB_NOP;
 			mode_sram = MODE_SRAM_READ;
