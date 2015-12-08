@@ -6,12 +6,14 @@
 // Version:     1.0  Initial Design Entry
 // Description: Test bench for the control Unit
 
+`timescale 1ns/100ps
+
 module tb_controlUnit
 ();
 
 	// Note: This test bench changes values on negedge
 
-	localparam CLK_PERIOD = 2.5;
+	localparam CLK_PERIOD = 20;
 	localparam DISABLED = 1'b0;
 	localparam MODE_WB_NOP	= 3'b000; // not really required, just for safety
 	localparam MODE_WB_S1	= 3'd1;

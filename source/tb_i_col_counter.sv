@@ -11,7 +11,7 @@ module tb_i_col_counter
 ();
 	// Note: This test bench changes values on negedge
 
-	localparam CLK_PERIOD = 2.5;
+	localparam CLK_PERIOD = 20;
 
 	reg clk;
 	always
