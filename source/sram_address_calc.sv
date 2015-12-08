@@ -46,7 +46,7 @@ flex_counter #(.NUM_CNT_BITS(13)) outputAddr
 	.n_rst			(n_rst), // consider removing n_rst from flex counter
 	.clear			(clear),
 	.count_enable	(enable & !mode),
-	.rollover_val	(image_width - 1),
+	.rollover_val	(image_width - 13'd1),
 
 	.count_out		(outputAddrNum)
 	//.rollover_flag	()
