@@ -1,0 +1,199 @@
+#include <iostream>
+#include <fstream>
+
+#define debug 0
+
+using namespace std;
+
+class pixel
+{
+    public:
+    unsigned char R,G,B;
+};
+
+int main(int argc, char **argv)
+{
+    if(argc != 2)
+    {
+        cout << "Wrong no of arguments" << endl;
+        cout << argv[0] << " <Input File Name>" << endl;
+        return 1;
+    }
+
+    ifstream fin(argv[1]);
+    if(fin == NULL)
+    {
+        cout << "File could not be opened.\nCheck file path.\n";
+        return 1;
+    }
+
+    char ch;
+    unsigned int width,height,maxVal;
+    fin.get(ch);
+    if(ch != 'P')
+        return 1;
+    fin.get(ch);
+    if(ch != '6')
+        return 1;
+
+    fin.get(ch);
+    fin >> width >> height >> maxVal;
+    cout << width << " x " << height << " with maxVal = " << maxVal << endl;
+    if(maxVal > 255)
+    {
+        cout << "maxVal too big. aborting\n";
+        return 1;
+    }
+    
+    pixel **originalImage = new pixel* [height];
+    for(unsigned int i = 0; i < height; ++i)
+    {
+        originalImage[i] = new pixel[width];
+        for(unsigned int j = 0; j < width; ++j)
+        {
+            fin.get(ch);
+            originalImage[i][j].R = ch;
+            fin.get(ch);
+            originalImage[i][j].G = ch;
+            fin.get(ch);
+            originalImage[i][j].B = ch;
+        }
+    }   
+    fin.close();
+    cout << "file closed\n";
+
+    ofstream fout("myImage.ppm");
+    fout << "P6\n" << width+1 << " " << height+1 << "\n" << maxVal << "\n";
+    /*
+        NOTE:
+             at i = 0 and j = 0
+                | R(0,0) | G(0,1) |
+                | G(1,0) | B(1,1) | 
+             is assumption
+    */
+    for(int i = 0; i < height + 1; ++i)
+    {
+        for(int j = 0; j < width + 1; ++j)
+        {
+            char color;
+            if(i % 2 == 0 && j % 2 == 0) // red
+                color = 'r';
+            else if(i % 2 == 0 && j % 2 == 1) // green
+                color = 'g';
+            else if(i % 2 == 1 && j % 2 == 0) // green
+                color = 'g';
+            else // blue
+                color = 'b';
+            
+            if(debug) cout << color << ": i-1" << i-1 << ", i+1" << i+1 << ", j-1" << j-1 << ", j+1" << j+1 << "\n"; 
+            int v1,v2,v3,v4;
+            if(i - 1 >= 0)
+            {
+                if(j - 1 >= 0)
+                {
+                    v1 = ( color == 'r' ? originalImage[i-1][j-1].R : color == 'g' ? originalImage[i-1][j-1].G : originalImage[i-1][j-1].B );
+                }
+                else
+                {
+                    v1 = -1;
+                }
+
+                if(j + 1 < width)
+                {
+                    v2 = ( color == 'r' ? originalImage[i-1][j+1].R : color == 'g' ? originalImage[i-1][j+1].G : originalImage[i-1][j+1].B );
+                }
+                else
+                {
+                    v2 = -1;
+                }
+            }
+            else
+            {
+                v1 = v2 = -1;
+            }
+            if(i + 1 < height)
+            {
+                if(j - 1 >= 0)
+                {
+                    v3 = ( color == 'r' ? originalImage[i+1][j-1].R : color == 'g' ? originalImage[i+1][j-1].G : originalImage[i+1][j-1].B );
+                }
+                else 
+                {
+                    v3 = -1;
+                }
+
+                if(j + 1 < width)
+                {
+                    v4 = ( color == 'r' ? originalImage[i+1][j+1].R : color == 'g' ? originalImage[i+1][j+1].G : originalImage[i+1][j+1].B );
+                }
+                else 
+                {
+                    v4 = -1;
+                }
+            }
+            else
+            {
+                v3 = v4 = -1;
+            }
+
+            int divisor = 0;
+            long long numerator = 0;
+            unsigned char result = 0;
+            if(v1 != -1)
+            {
+                numerator += v1;
+                ++divisor;
+            }
+            if(v2 != -1)
+            {
+                numerator += v2;
+                ++divisor;
+            }
+            if(v3 != -1)
+            {
+                numerator += v3;
+                ++divisor;
+            }
+            if(v4 != -1)
+            {
+                numerator += v4;
+                ++divisor;
+            }
+            result = (unsigned char)(numerator/divisor); // divisor must be 1 or more (else error anyways)
+            
+            if(color == 'r')
+            {
+                fout.put(result);
+                fout.put(0);
+                fout.put(0);
+            }
+            else if(color == 'g')
+            {
+                fout.put(0);
+                fout.put(result);
+                fout.put(0);
+            }
+            else
+            {
+                fout.put(0);
+                fout.put(0);
+                fout.put(result);
+            }
+
+            
+        }
+    }
+    fout.close();
+
+    // memory de-allocation (starting) //
+    for(unsigned int i = 0; i < height; ++i)
+    {
+        delete originalImage[i];
+        //delete bayeredImage[i];
+    }
+    //delete bayeredImage[height]; // bayered image has 1 more row
+    //delete bayeredImage;
+    delete originalImage;
+    // memory de-allocation (finished) //
+    return 0;
+}
