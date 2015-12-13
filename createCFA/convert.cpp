@@ -65,10 +65,12 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    char readAgainFlag = 1;
-    fin.get(ch);
-    if(ch != '\n')
-        readAgainFlag = 0;
+    char readItFlag = 0;
+    do
+    {
+        fin.get(ch);
+    }
+    while(ch == '\n');
     
     pixel **originalImage = new pixel* [height];
     for(unsigned int i = 0; i < height; ++i)
@@ -76,8 +78,8 @@ int main(int argc, char **argv)
         originalImage[i] = new pixel[width];
         for(unsigned int j = 0; j < width; ++j)
         {
-            if(readAgainFlag) fin.get(ch);
-            else readAgainFlag = 1;
+            if(readItFlag) fin.get(ch);
+            else readItFlag = 1;
             originalImage[i][j].R = ch;
             fin.get(ch);
             originalImage[i][j].G = ch;
