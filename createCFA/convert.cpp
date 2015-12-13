@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 #define debug 0
 
@@ -15,8 +16,27 @@ int main(int argc, char **argv)
 {
     if(argc != 2)
     {
-        cout << "Wrong no of arguments" << endl;
-        cout << argv[0] << " <Input File Name>" << endl;
+        cout << "RGB Color Filter Array Generator" << endl
+             << "    ~Abhishek Srikanth    " << endl << endl
+             
+             << "Usage: "
+             << argv[0] << " <inputFileName>" << endl << endl
+
+             << "Output:" << endl
+             << "out_<inputFileName>  : each pixel is a Color Filter Array in format described below" << endl
+             << "fpga_<inputFileName> : each 32 bits contain one intensity value only." << endl
+             << "                       This is useful when 32 bit intensity values are required" << endl << endl
+
+             << "Description:" << endl
+             << "Program to take a ppm image (does not support comments in image)" << endl
+             << "and generate a Color Filter Array (CFA) out of it." << endl
+             << "Format of CFA is as follows: " << endl
+             << "| R | G | R | G | R | ..." << endl
+             << "| G | B | G | B | G | ..." << endl
+             << "| R | G | R | G | R | ..." << endl
+             << "| G | B | G | B | G | ..." << endl
+             << "..." << endl << endl;
+            
         return 1;
     }
 
@@ -62,8 +82,13 @@ int main(int argc, char **argv)
     fin.close();
     cout << "file closed\n";
 
-    ofstream fout("myImage.ppm");
-    fout << "P6\n" << width+1 << " " << height+1 << "\n" << maxVal << "\n";
+    string outName = argv[1];
+    outName = "out_" + outName;
+    ofstream fout( outName.c_str() );
+    outName = "fpga_" + outName;
+    ofstream fout_fpga( outName.c_str() );
+    fout      << "P6\n" << width+1 << " " << height+1 << "\n" << maxVal << "\n";
+    fout_fpga << "P6\n" << width+1 << " " << height+1 << "\n" << maxVal << "\n";
     /*
         NOTE:
              at i = 0 and j = 0
@@ -179,8 +204,10 @@ int main(int argc, char **argv)
                 fout.put(0);
                 fout.put(result);
             }
-
-            
+            fout_fpga.put(0);
+            fout_fpga.put(0);
+            fout_fpga.put(0);
+            fout_fpga.put(result);
         }
     }
     fout.close();
@@ -189,10 +216,7 @@ int main(int argc, char **argv)
     for(unsigned int i = 0; i < height; ++i)
     {
         delete originalImage[i];
-        //delete bayeredImage[i];
     }
-    //delete bayeredImage[height]; // bayered image has 1 more row
-    //delete bayeredImage;
     delete originalImage;
     // memory de-allocation (finished) //
     return 0;
