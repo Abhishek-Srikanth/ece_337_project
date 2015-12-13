@@ -23,8 +23,8 @@ int main(int argc, char **argv)
              << argv[0] << " <inputFileName>" << endl << endl
 
              << "Output:" << endl
-             << "out_<inputFileName>  : each pixel is a Color Filter Array in format described below" << endl
-             << "fpga_<inputFileName> : each 32 bits contain one intensity value only." << endl
+             << "<inputFileName>_out      : Each pixel is a Color Filter Array in format described below" << endl
+             << "<inputFileName>_out_fpga : Each 32 bits contain one intensity value only." << endl
              << "                       This is useful when 32 bit intensity values are required" << endl << endl
 
              << "Description:" << endl
@@ -83,9 +83,9 @@ int main(int argc, char **argv)
     cout << "file closed\n";
 
     string outName = argv[1];
-    outName = "out_" + outName;
+    outName = outName + "_out";
     ofstream fout( outName.c_str() );
-    outName = "fpga_" + outName;
+    outName = outName + "_fpga";
     ofstream fout_fpga( outName.c_str() );
     fout      << "P6\n" << width+1 << " " << height+1 << "\n" << maxVal << "\n";
     fout_fpga << "P6\n" << width+1 << " " << height+1 << "\n" << maxVal << "\n";
