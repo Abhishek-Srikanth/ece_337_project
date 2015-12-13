@@ -23,8 +23,8 @@ int main(int argc, char **argv)
              << argv[0] << " <inputFileName>" << endl << endl
 
              << "Output:" << endl
-             << "out_<inputFileName>  : each pixel is a Color Filter Array in format described below" << endl
-             << "fpga_<inputFileName> : each 32 bits contain one intensity value only." << endl
+             << "<inputFileName>_out      : Each pixel is a Color Filter Array in format described below" << endl
+             << "<inputFileName>_out_fpga : Each 32 bits contain one intensity value only." << endl
              << "                       This is useful when 32 bit intensity values are required" << endl << endl
 
              << "Description:" << endl
@@ -64,6 +64,13 @@ int main(int argc, char **argv)
         cout << "maxVal too big. aborting\n";
         return 1;
     }
+
+    char readItFlag = 0;
+    do
+    {
+        fin.get(ch);
+    }
+    while(ch == '\n');
     
     pixel **originalImage = new pixel* [height];
     for(unsigned int i = 0; i < height; ++i)
@@ -71,7 +78,8 @@ int main(int argc, char **argv)
         originalImage[i] = new pixel[width];
         for(unsigned int j = 0; j < width; ++j)
         {
-            fin.get(ch);
+            if(readItFlag) fin.get(ch);
+            else readItFlag = 1;
             originalImage[i][j].R = ch;
             fin.get(ch);
             originalImage[i][j].G = ch;
@@ -83,9 +91,9 @@ int main(int argc, char **argv)
     cout << "file closed\n";
 
     string outName = argv[1];
-    outName = "out_" + outName;
+    outName = outName + "_out";
     ofstream fout( outName.c_str() );
-    outName = "fpga_" + outName;
+    outName = outName + "_fpga";
     ofstream fout_fpga( outName.c_str() );
     fout      << "P6\n" << width+1 << " " << height+1 << "\n" << maxVal << "\n";
     fout_fpga << "P6\n" << width+1 << " " << height+1 << "\n" << maxVal << "\n";
@@ -110,31 +118,18 @@ int main(int argc, char **argv)
             else // blue
                 color = 'b';
             
-            if(debug) cout << color << ": i-1" << i-1 << ", i+1" << i+1 << ", j-1" << j-1 << ", j+1" << j+1 << "\n"; 
-            int v1,v2,v3,v4;
+            //if(debug) cout << color << ": i-1(" << i-1 << "), i+1(" << i+1 << "), j-1(" << j-1 << "), j+1(" << j+1 << ")\n"; 
+            int v1 = -1, v2 = -1, v3 = -1, v4 = -1;
             if(i - 1 >= 0)
             {
                 if(j - 1 >= 0)
                 {
                     v1 = ( color == 'r' ? originalImage[i-1][j-1].R : color == 'g' ? originalImage[i-1][j-1].G : originalImage[i-1][j-1].B );
                 }
-                else
-                {
-                    v1 = -1;
-                }
-
                 if(j + 1 < width)
                 {
                     v2 = ( color == 'r' ? originalImage[i-1][j+1].R : color == 'g' ? originalImage[i-1][j+1].G : originalImage[i-1][j+1].B );
                 }
-                else
-                {
-                    v2 = -1;
-                }
-            }
-            else
-            {
-                v1 = v2 = -1;
             }
             if(i + 1 < height)
             {
@@ -142,23 +137,10 @@ int main(int argc, char **argv)
                 {
                     v3 = ( color == 'r' ? originalImage[i+1][j-1].R : color == 'g' ? originalImage[i+1][j-1].G : originalImage[i+1][j-1].B );
                 }
-                else 
-                {
-                    v3 = -1;
-                }
-
                 if(j + 1 < width)
                 {
                     v4 = ( color == 'r' ? originalImage[i+1][j+1].R : color == 'g' ? originalImage[i+1][j+1].G : originalImage[i+1][j+1].B );
                 }
-                else 
-                {
-                    v4 = -1;
-                }
-            }
-            else
-            {
-                v3 = v4 = -1;
             }
 
             int divisor = 0;
@@ -211,6 +193,21 @@ int main(int argc, char **argv)
         }
     }
     fout.close();
+    fout_fpga.close();
+    
+    if(debug)
+    {   // to replicate image and see if image was read correctly
+        fout.open("replicate.ppm");
+        fout << "P6\n" << width << " " << height << "\n255\n";
+        for(unsigned int i = 0; i < height; ++i)
+            for(unsigned int j = 0; j < width; ++j)
+            {
+                fout << originalImage[i][j].R;
+                fout << originalImage[i][j].G;
+                fout << originalImage[i][j].B;
+            }
+        fout.close();
+    }
 
     // memory de-allocation (starting) //
     for(unsigned int i = 0; i < height; ++i)
