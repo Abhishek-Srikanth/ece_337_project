@@ -19,34 +19,40 @@ module customLogicTLD
 	input wire [1:0] filterMode,
 	input wire [7:0] betaValue,
 	input wire sdram_datareadvalid,
-
-	// sdram MO-SI wires
+	
+	input wire [31:0] data_sdram,
 	output wire sdram_read_en,
 	output wire sdram_write_en,
 	output wire [25:0] address_sdram,
-	output wire [31:0] data_sdram,
 	output wire [31:0] writeData_sdram,
 	output wire finish_flag
 );
-
-assign writeData_sdram = delayedData_sram;
 
 localparam rowCacheStartAddr  = {13'd0, 13'd0};
 localparam outputArrStartAddr = {13'd1, 13'd0};
 
 wire start_flag;
 wire rollover_i, rollover_i_wr, rollover_j;					// rollover wires
-wire [7:0] wb1, [7:0] wb2, [7:0] wb3, [7:0] wb4;			// windowBuffer connecting wires
+wire [7:0] wb1;
+wire [7:0] wb2;  		// windowBuffer connecting wires
+wire [7:0] wb3;
+wire [7:0] wb4;	
 wire [31:0] reorderedWire;									// reOrdered wire to filter top level
 wire [31:0] postFilterData;									// output of filter block
-wire [12:0] i_value, [12:0]j_value;							// value of counter i and j
+wire [12:0] i_value;										// value of counter i
+wire [12:0] j_value;										// value of counter j
 wire i_wr_en, i_en, j_en;  									// enable wires
 wire addrCalc_sram_en, addrCalc_sdram_en, sram_en, WB_en;	// enable wires
 wire sram_datareadvalid;
 wire addrCalc_sram_mode, addrCalc_sdram_mode;				// addrCalc mode
 wire [25:0] address_sram;									// address to query sram
-wire [2:0] mode_WB, mode_sram;								// sram and WB operation modes
-wire [31:0] delayedData_sdram, [31:0] delayedData_sram, [31:0] data_sram;
+wire [2:0] mode_WB;											// WB mode
+wire mode_sram;												// sram modes
+wire [31:0] delayedData_sdram;
+wire [31:0] delayedData_sram;
+wire [31:0] data_sram;
+
+assign writeData_sdram = delayedData_sram;
 
 // rising edge detector
 risingEdgeDetector edgeDetector
@@ -85,7 +91,7 @@ i_wr_counter outputColCounter
 	.rollover_val			(imageWidth),	// 12:0
 	.count_enable			(i_wr_en),
 	
-	.rollover_flag			(rollover_i_wr),
+	.rollover_flag			(rollover_i_wr)
 	//.value				()				// 12:0	// not used
 );
 
@@ -99,7 +105,7 @@ i_col_counter colCounter
 
 	.rollover_flag			(rollover_i),
 	.value					(i_value)		// 12:0	
-)
+);
 
 // j port mapping
 j_row_counter rowCounter
@@ -169,8 +175,8 @@ wbuffer windowBuffer
    	.nrst					(n_rst),
    	.enable_CU				(WB_en),
    	.mode					(mode_WB),	// 2:0
-   	.data_read				(delayedData_sdram),	// 7:0	// data_read is from sdram
-   	.data					(delayedData_sram),		// 7:0	// data is from sram
+   	.data_read				(delayedData_sdram[7:0]),	// 7:0	// data_read is from sdram	// want 8 bits only
+   	.data					(delayedData_sram[7:0]),	// 7:0	// data is from sram		// want 8 bits only
 
    	.w_1					(wb1),	// 7:0
    	.w_2					(wb2),	// 7:0
@@ -192,15 +198,15 @@ rggb reorderingModule
 );
 
 // filter Top Level module
-filterTopLevel
+filterTopLevel topLevelFilterBlock
 (
 	.clk					(clk),
 	.n_rst					(n_rst),
-	.[31:0] in				(reorderedWire),		// 31:0
-	.[1:0] filterMode		(filterMode),		// 1:0 	// from PCIe status registers
-	.[7:0] brightnessCoeff	(betaValue),		// 7:0
+	.in						(reorderedWire),	// 31:0
+	.filterMode				(filterMode),		// 1:0 	// from PCIe status registers
+	.brightnessCoeff		(betaValue),		// 7:0
 	
-	.[31:0] result			(postFilterData)		// 31:0
+	.result					(postFilterData)	// 31:0
 );
 
 sram_simulation ennodaSRAM_simulation

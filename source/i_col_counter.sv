@@ -23,7 +23,7 @@ flex_counter #(.NUM_CNT_BITS(13)) colCounter
 	//.n_rst			(), // consider removing n_rst from flex counter
 	.clear			(clear),
 	.count_enable	(count_enable),
-	.rollover_val	(rollover_val - 1),
+	.rollover_val	(rollover_val - 13'd1),
 
 	.count_out		(value),
 	.rollover_flag	(rollover_flag)
