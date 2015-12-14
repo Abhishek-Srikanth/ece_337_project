@@ -24,8 +24,15 @@ module customLogicTLD
 	output wire sdram_read_en,
 	output wire sdram_write_en,
 	output wire [25:0] address_sdram,
+	output wire [31:0] data_sdram,
+	output wire [31:0] writeData_sdram,
 	output wire finish_flag
 );
+
+assign writeData_sdram = delayedData_sram;
+
+localparam rowCacheStartAddr  = {13'd0, 13'd0};
+localparam outputArrStartAddr = {13'd1, 13'd0};
 
 wire start_flag;
 wire rollover_i, rollover_i_wr, rollover_j;					// rollover wires
@@ -39,6 +46,7 @@ wire sram_datareadvalid;
 wire addrCalc_sram_mode, addrCalc_sdram_mode;				// addrCalc mode
 wire [25:0] address_sram;									// address to query sram
 wire [2:0] mode_WB, mode_sram;								// sram and WB operation modes
+wire [31:0] delayedData_sdram, [31:0] delayedData_sram, [31:0] data_sram;
 
 // rising edge detector
 risingEdgeDetector edgeDetector
@@ -49,6 +57,25 @@ risingEdgeDetector edgeDetector
 	.start_flag				(start_flag)
 );
 
+// delay data that was read from the SRAM
+delaySingleClock dataFromSRAM
+(
+	.clk					(clk),
+	.n_rst					(n_rst),
+	.in						(data_sram),		// 31:0
+
+	.out					(delayedData_sram)	// 31:0
+);
+
+// delay data that was read from SDRAM
+delaySingleClock dataFromSDRAM
+(
+	.clk					(clk),
+	.n_rst					(n_rst),
+	.in						(data_sdram),		// 31:0
+
+	.out					(delayedData_sdram)	// 31:0
+);
 
 // i_wr port mapping
 i_wr_counter outputColCounter
@@ -99,8 +126,8 @@ address_calc	addressCalculator
 	.image_width			(imageWidth), // [12:0] 
 	.start_address_sdram	(start_addr_sdram),	// 25:0
 	.finish_address_sdram	(finish_addr_sdram),	// 25:0
-	.rowCache_address_sram	(),	// 25:0
-	.output_address_sram	(),	// 25:0
+	.rowCache_address_sram	(rowCacheStartAddr),	// 25:0	// both values are local params
+	.output_address_sram	(outputArrStartAddr),	// 25:0	// both values are local params
 
 	.sdram_address			(address_sdram),	// 25:0
 	.sram_address			(address_sram)		// 25:0
@@ -142,8 +169,8 @@ wbuffer windowBuffer
    	.nrst					(n_rst),
    	.enable_CU				(WB_en),
    	.mode					(mode_WB),	// 2:0
-   	.data_read				(),	// 7:0
-   	.data					(),	// 7:0
+   	.data_read				(delayedData_sdram),	// 7:0	// data_read is from sdram
+   	.data					(delayedData_sram),		// 7:0	// data is from sram
 
    	.w_1					(wb1),	// 7:0
    	.w_2					(wb2),	// 7:0
@@ -179,14 +206,14 @@ filterTopLevel
 sram_simulation ennodaSRAM_simulation
 (
 	.clk					(clk),
-	.sdram_data				(),	// 31:0
+	.sdram_data				(delayedData_sdram),	// 31:0
 	.wb_data				(postFilterData),		// 31:0
 	.address				(address_sram),			// 25:0	
 	.mode					(mode_sram),			// read/write
 	.addrCalcMode			(addrCalc_sram_mode),
 	.enable					(sram_en),
 
-	.out_data				(),	// 31:0
+	.out_data				(data_sram),			// 31:0
 	.dataReadValid			(sraM_datareadvalid)
 );
 
