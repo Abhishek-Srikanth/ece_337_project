@@ -9,26 +9,25 @@ module rggb
    output reg [31:0] out
    );
 
+   wire R;
+   wire G1;
+   wire G2;
+   wire B;
+   
+   assign out = {R, G1, G2, B};
+   
    always_comb
-     begin: MUX
-	out = 'x;
+    begin: MUX
+	{R, G1, G2, B} = 'x;
 	
 	if(row == 1'b0 && col == 1'b0)
-	  begin
-	     out = {wb_1, wb_2, wb_4, wb_3};
-	  end
+	     {R, G1, G2, B} = {wb_1, wb_2, wb_3, wb_4};
 	if(row == 1'b0 && col == 1'b1)
-	  begin
-	     out = {wb_2, wb_1, wb_3, wb_4};
-	  end
+	     {G1, R, B, G2} = {wb_1, wb_2, wb_3, wb_4};
 	if(row == 1'b1 && col == 1'b0)
-	  begin
-	     out = {wb_2, wb_4, wb_3, wb_1};
-	  end
+	     {G1, B, R, G2} = {wb_1, wb_2, wb_3, wb_4};
 	if(row == 1'b1 && col == 1'b1)
-	  begin
-	     out = {wb_1, wb_3, wb_4, wb_2};
-	  end
-     end // block: MUX
+	     {B, G1, G2, R} = {wb_1, wb_2, wb_3, wb_4};
+    end // block: MUX
 
 endmodule // rggb
