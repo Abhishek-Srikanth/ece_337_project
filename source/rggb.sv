@@ -9,10 +9,10 @@ module rggb
    output reg [31:0] out
    );
 
-   wire R;
-   wire G1;
-   wire G2;
-   wire B;
+   reg R;
+   reg G1;
+   reg G2;
+   reg B;
    
    assign out = {R, G1, G2, B};
    
