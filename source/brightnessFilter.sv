@@ -27,13 +27,14 @@ module brightnessFilter
    	wire [8:0]	green;
    	wire [8:0]	blue;
 	assign red 		= in[31:24] + beta;  
- 	assign green	= in[23:16] + beta;
+ 	assign green	= in[23:16] + beta; // only one of 2 greens is used
+										// their values usually very close
 	assign blue		= in[7:0] + beta;
 	//assign result = {8'hFF, red, green, blue};
 	// NOTE: switch to above if timing is an issue
 	assign result = { 8'hFF,( red[8] == 1'b1 ? 8'hFF : red[7:0] ) ,  
 							( green[8] == 1'b1 ? 8'hFF : green[7:0] ) ,  
 							( blue[8] == 1'b1 ? 8'hFF : blue[7:0] ) 
-					}
+					};
 
 endmodule
