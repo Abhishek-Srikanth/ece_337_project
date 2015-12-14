@@ -10,12 +10,15 @@
 * To check if clock in b/w is required
 * Alpha value < 1 ; must see if this multiplication can do 
 * @Nikhil @Tiger please check above
+*
+* Decided to remove alpha (contrast feature) since alpha <= 1
+* Floating point multiplication is a complication we don't need right now
 */
 
 module cont_bright
 (
 	input wire [31:0] in,
-   	input wire alpha,
+   	//input wire alpha,
    	input wire beta,
    	output wire [31:0] result
 );
@@ -33,10 +36,10 @@ module cont_bright
    	wire [7:0] 	     pix2_1;
    	wire [7:0] 	     pix3_1;
    	wire [7:0] 	     pix4_1;
-	assign pix1_1 = alpha * pix_1 + beta;  
- 	assign pix2_1 = alpha * pix_2 + beta;  
-	assign pix3_1 = alpha * pix_3 + beta;  
-	assign pix4_1 = alpha * pix_4 + beta;  
+	assign pix1_1 = /*alpha */ pix_1 + beta;  
+ 	assign pix2_1 = /*alpha */ pix_2 + beta;  
+	assign pix3_1 = /*alpha */ pix_3 + beta;  
+	assign pix4_1 = /*alpha */ pix_4 + beta;  
 	assign result = {pix1_1, pix2_1, pix3_1, pix4_1};
 
 endmodule // cont_bright
