@@ -8,12 +8,12 @@
 
 module filterTopLevel
 (
-	input clk,
-	input n_rst,
-	input [31:0] in,
-	input [1:0] filterMode,		// from PCIe status registers
-	input [7:0] brightnessCoeff,
-	output [31:0] result
+	input wire clk,
+	input wire n_rst,
+	input wire [31:0] in,
+	input wire [1:0] filterMode,		// from PCIe status registers
+	input wire [7:0] brightnessCoeff,
+	output reg [31:0] result
 );
 
 reg [31:0] brightnessResult;
@@ -27,7 +27,7 @@ begin
 	end
 	else if(filterMode == 2'b01)
 	begin
-		result = brightnessCoeff;
+		result = brightnessResult;
 	end
 	else if(filterMode == 2'b10)
 	begin
