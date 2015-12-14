@@ -3,40 +3,40 @@
 // Created:     12/13/2015
 // Author:      Nikhil Ghanta
 // Lab Section: 337-04
-// Version:     1.0  Initial Design Entry
+// Version:     1.1 Style change
 // Description: contrast and brightness
 
+/*
+* To check if clock in b/w is required
+* Alpha value < 1 ; must see if this multiplication can do 
+* @Nikhil @Tiger please check above
+*/
+
 module cont_bright
-  (
-   input wire [31:0] in,
-   input wire alpha,
-   input wire beta,
-   output reg [31:0] result
-   );
+(
+	input wire [31:0] in,
+   	input wire alpha,
+   	input wire beta,
+   	output wire [31:0] result
+);
 
-   reg [7:0] 	     pix_1;
-   reg [7:0] 	     pix_2;
-   reg [7:0] 	     pix_3;
-   reg [7:0] 	     pix_4;
-   reg [7:0] 	     pix1_1;
-   reg [7:0] 	     pix2_1;
-   reg [7:0] 	     pix3_1;
-   reg [7:0] 	     pix4_1;
-   
-   always_comb
-     begin
-	pix_1 = in[31:24];
-	pix1_1 = (alpha*pix_1) + beta;
-	pix_2 = in[23:16];
-	pix2_1 = (alpha*pix_2) + beta;
-	pix_3 = in[15:8];
-	pix3_1 = (alpha*pix_3) + beta;
-	pix_4 = in[7:0];
-	pix4_1 = (alpha*pix_4) + beta;
+   	wire [7:0] 	     pix_1;
+   	wire [7:0] 	     pix_2;
+   	wire [7:0] 	     pix_3;
+   	wire [7:0] 	     pix_4;
+   	assign pix_1 = in[31:24];
+   	assign pix_2 = in[23:16];
+   	assign pix_3 = in[15:8];
+   	assign pix_4 = in[7:0];
 
-	result = {pix1_1, pix2_1, pix3_1, pix4_1};
-	
-	
-     end // always_comb begin
+   	wire [7:0] 	     pix1_1;
+   	wire [7:0] 	     pix2_1;
+   	wire [7:0] 	     pix3_1;
+   	wire [7:0] 	     pix4_1;
+	assign pix1_1 = alpha * pix_1 + beta;  
+ 	assign pix2_1 = alpha * pix_2 + beta;  
+	assign pix3_1 = alpha * pix_3 + beta;  
+	assign pix4_1 = alpha * pix_4 + beta;  
+	assign result = {pix1_1, pix2_1, pix3_1, pix4_1};
 
 endmodule // cont_bright
