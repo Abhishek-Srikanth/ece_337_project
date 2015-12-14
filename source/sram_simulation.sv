@@ -29,7 +29,7 @@ module sram_simulation
 * out_data contains data of last read value
 * All actions take place only on an enable
 */
-reg [31:0] memory [0:1<<26]; // creates 2^26 blocks, each 32 bits large
+reg [31:0] memory [0:1<<14]; // creates 2^26 blocks, each 32 bits large
 
 always @(posedge clk)
 begin
