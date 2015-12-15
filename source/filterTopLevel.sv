@@ -13,11 +13,15 @@ module filterTopLevel
 	input wire [31:0] in,
 	input wire [1:0] filterMode,		// from PCIe status registers
 	input wire [7:0] brightnessCoeff,
+	input wire [2:0] wb_mode,
+	input wire wb_en,
+
 	output reg [31:0] result
 );
 
 reg [31:0] brightnessResult;
 reg [31:0] debayerResult;
+reg [31:0] horBlurResult;
 
 always_comb
 begin
@@ -31,7 +35,7 @@ begin
 	end
 	else if(filterMode == 2'b10)
 	begin
-		result = '0;
+		result = horBlurResult;
 	end
 	else if(filterMode == 2'b11)
 	begin
@@ -55,5 +59,17 @@ debayer debayerModule
 	.in		(in),
 	.out	(debayerResult)
 );
+
+horblur horizontalBlur
+(
+   	.clk		(clk),
+   	.n_rst		(n_rst),
+  	.wb_en		(wb_en),
+	.mode_wb	(wb_mode), // 2:0
+	.data		(debayerResult),	// 31:0
+
+   	.blur		(horBlurResult)	// 31:0
+);
+
 
 endmodule

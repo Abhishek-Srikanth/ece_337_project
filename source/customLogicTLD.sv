@@ -206,7 +206,9 @@ filterTopLevel topLevelFilterBlock
 	.in						(reorderedWire),	// 31:0
 	.filterMode				(filterMode),		// 1:0 	// from PCIe status registers
 	.brightnessCoeff		(betaValue),		// 7:0
-	
+	.wb_mode				(mode_WB),			// 2:0
+	.wb_en					(WB_en),
+
 	.result					(postFilterData)	// 31:0
 );
 

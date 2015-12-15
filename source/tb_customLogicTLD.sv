@@ -116,7 +116,10 @@ task initialize();
 	startControlRegister = 1'b0;
 	start_addr_sdram = '0;	// read and write address
 	finish_addr_sdram = '0;	// of the image is the same
-	filterMode = 2'b01;		// general bayer filter (nothing special)
+//	filterMode = 2'b00;		// general bayer filter (nothing special)
+//	filterMode = 2'b01;		// brightness filter
+	filterMode = 2'b10;		// horizontal blur filter
+
 	betaValue = 8'd20;		// Not used because of betaValue
 	data_sdram = '0;		// doesnt matter right now
 	sdram_datareadvalid = 1'b0;

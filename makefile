@@ -16,7 +16,7 @@ include /home/ecegrid/a/ece337/Course_Prod/course_make_vars
 # (do not include the source folder in the name)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
 # AND THE AUTOMATED GRADING SYSTEM
-COMPONENT_FILES	:= address_calc.sv brightnessFilter.sv controlUnit.sv debayer.sv delaySingleClock.sv filterTopLevel.sv flex_counter.sv i_col_counter.sv i_wr_counter.sv j_row_counter.sv rggb.sv risingEdgeDetector.sv sdram_address_calc.sv sram_address_calc.sv sram_simulation.sv wbuffer.sv
+COMPONENT_FILES	:= address_calc.sv brightnessFilter.sv controlUnit.sv debayer.sv delaySingleClock.sv filterTopLevel.sv flex_counter.sv i_col_counter.sv i_wr_counter.sv j_row_counter.sv rggb.sv risingEdgeDetector.sv sdram_address_calc.sv sram_address_calc.sv sram_simulation.sv wbuffer.sv horblur.sv
 
 # Specify the name of the top level file (do not include the source folder in the name)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
