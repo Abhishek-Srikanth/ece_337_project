@@ -103,9 +103,9 @@ task initialize();
 	magicNo = $fgetc(fin); // for \n to be read
 	
 	$fscanf(fin, "%d %d", imageWidth, imageHeight);
-	$fwrite(fout,"%3d %3d\n", imageWidth, imageHeight);
+	$fwrite(fout,"%3d %3d\n", imageWidth - 13'd1, imageHeight - 13'd1);
 	$fscanf(fin, "%3d", maxVal);
-	$fwrite(fout,"%3d", maxVal);	
+	$fwrite(fout,"%3d\n", maxVal);	
 	
 	n_rst = 1'b1;
 	startControlRegister = 1'b0;
@@ -122,7 +122,7 @@ endtask
 
 task readFile();
 	magicNo = $fgetc(fin);
-	data_sdram[31:24] = magicNo;
+	data_sdram[7:0] = magicNo;
 	//$fwrite(fout, "%c", magicNo);
 	magicNo = $fgetc(fin);
 	data_sdram[23:16] = magicNo;
@@ -131,11 +131,11 @@ task readFile();
 	data_sdram[15:8] = magicNo;
 	//$fwrite(fout, "%c", magicNo);
 	magicNo = $fgetc(fin);
-	data_sdram[7:0] = magicNo;
+	data_sdram[31:24] = magicNo;
 endtask
 
 task writeToFile();
-	$fwrite(fout, "%c", writeData_sdram[31:24]);
+	//$fwrite(fout, "%c", writeData_sdram[31:24]);	// don't want to save alpha value to file
 	$fwrite(fout, "%c", writeData_sdram[23:16]);
 	$fwrite(fout, "%c", writeData_sdram[15:8]);
 	$fwrite(fout, "%c", writeData_sdram[7:0]);
@@ -160,8 +160,9 @@ begin
 		clock(1);
 		assert(sdram_read_en == 1'b1) else $error("expecting a read _en");
 		assert(address_sdram == exp_address_sdram) else $error("wrong address read from");
-		$fscanf(fin, "%c%c%c%c", data_sdram[31:24], data_sdram[23:16], data_sdram[15:8], data_sdram[7:0]);
-		$info("%d", data_sdram); 
+		readFile();
+		//$fscanf(fin, "%c%c%c%c", data_sdram[31:24], data_sdram[23:16], data_sdram[15:8], data_sdram[7:0]);
+		//$info("%d", data_sdram); 
 		clock(1);
 		assert(sdram_read_en == 1'b0) else $error("expecting read_en to pulse, not stay high forever");
 		assert(address_sdram == exp_address_sdram) else $error("wrong address read from");
@@ -178,7 +179,8 @@ begin
 	// j counter is being updated
 	$info("first row operations complete");
 
-	for(i = 1; i < 2/*imageHeight*/; i=i+1)
+//	for(i = 1; i < 2; i=i+1)
+	for(i = 1; i < imageHeight; i=i+1)
 	begin
 
 		while(sdram_read_en == 1'b0)	// for read SRAM operation
@@ -188,7 +190,7 @@ begin
 		
 		assert(sdram_read_en == 1'b1) else $error("expecting a read_en"); // guaranteed to pass
 		assert(address_sdram == exp_address_sdram) else $error("wrong address read from");
-		$fscanf(fin, "%d", data_sdram);
+		readFile(); //$fscanf(fin, "%d", data_sdram);
 
 		clock(1);
 		assert(sdram_read_en == 1'b0) else $error("expecting read_en to pulse, not stay high forever");
@@ -213,7 +215,7 @@ begin
 
 			assert(sdram_read_en == 1'b1) else $error("expecting a read_en"); // guaranteed to pass
 			assert(address_sdram == exp_address_sdram) else $error("wrong address read from");
-			$fscanf(fin, "%d", data_sdram);
+			readFile(); //$fscanf(fin, "%d", data_sdram);
 
 			clock(1);
 			assert(sdram_read_en == 1'b0) else $error("expecting read_en to pulse, not stay high forever");
@@ -242,13 +244,17 @@ begin
 		
 			assert(sdram_write_en == 1'b1) else $error("expecting a write_en");	// guaranteed to pass
 			assert(address_sdram == exp_write_address_sdram) else $error("wrong address read from");
-			$fwrite(fout, "%d", writeData_sdram);
+			writeToFile(); //$fwrite(fout, "%d", writeData_sdram);
+			clock(1);
+			exp_write_address_sdram = exp_write_address_sdram + 1;
+			// update counters
 		end
 
 	end
 
 	$fclose(fin);
 	$fclose(fout);
+	$stop;
 	$info("mudinjaachu");
 end
 
