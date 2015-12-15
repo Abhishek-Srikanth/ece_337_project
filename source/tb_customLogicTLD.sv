@@ -155,7 +155,7 @@ begin
 	// program starts running from this clock onwards
 	clock(1);
 	i = 0;
-	for(j = 0; j < imageWidth; j=j+1)
+	for(j = 0; j < imageWidth - 1; j=j+1)
 	begin
 		clock(1);
 		assert(sdram_read_en == 1'b1) else $error("expecting a read _en");
@@ -179,7 +179,7 @@ begin
 	// j counter is being updated
 	$info("first row operations complete");
 
-//	for(i = 1; i < 2; i=i+1)
+//	for(i = 1; i < 3; i=i+1)
 	for(i = 1; i < imageHeight; i=i+1)
 	begin
 
@@ -234,7 +234,7 @@ begin
 			clock(1);
 			// update other counters
 		end
-
+		$info("start of writing image");
 		for(j = 0; j < imageWidth - 1; j=j+1)
 		begin
 			while(sdram_write_en == 1'b0)	// for read SRAM operation
@@ -249,7 +249,8 @@ begin
 			exp_write_address_sdram = exp_write_address_sdram + 1;
 			// update counters
 		end
-
+		clock(1);
+		// update j counter
 	end
 
 	$fclose(fin);
