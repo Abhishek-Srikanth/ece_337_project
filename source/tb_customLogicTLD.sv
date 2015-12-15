@@ -90,9 +90,11 @@ task initialize();
 		| 32BitData( x Width x Height)EOF	|
 		-------------------------------------
 	*/
+	fin = $fopen("lena_out_fpga.ppm", "r");
+	fout = $fopen("lena_postChip.ppm", "w");
 
-	fin = $fopen("colorSet_out_fpga.ppm", "r");
-	fout = $fopen("colorSet_postChip.ppm", "w");
+	//fin = $fopen("colorSet_out_fpga.ppm", "r");
+	//fout = $fopen("colorSet_postChip.ppm", "w");
 	// read magic number and write same
 	magicNo = $fgetc(fin);
 	assert( magicNo == "P" ) else $error("magic number P not matching");
@@ -103,7 +105,9 @@ task initialize();
 	magicNo = $fgetc(fin); // for \n to be read
 	
 	$fscanf(fin, "%d %d", imageWidth, imageHeight);
-	$fwrite(fout,"%3d %3d\n", imageWidth - 13'd1, imageHeight - 13'd1);
+	imageWidth = imageWidth - 13'd1;
+	imageHeight = imageHeight - 13'd1;
+	$fwrite(fout,"%3d %3d\n", imageWidth, imageHeight);
 	$fscanf(fin, "%3d", maxVal);
 	magicNo = $fgetc(fin);
 	$fwrite(fout,"%3d\n", maxVal);	
@@ -157,7 +161,7 @@ begin
 	// program starts running from this clock onwards
 	clock(1);
 	i = 0;
-	for(j = 0; j < imageWidth - 1; j=j+1)
+	for(j = 0; j < imageWidth; j=j+1)
 	begin
 		clock(1);
 		assert(sdram_read_en == 1'b1) else $error("expecting a read _en");
@@ -208,7 +212,7 @@ begin
 		// update counters
 		
 		//$info("start of anyCol operation");
-		for(j = 1; j < imageWidth - 1; j=j+1)		// TODO check why if not working
+		for(j = 1; j < imageWidth; j=j+1)		// TODO check why if not working
 		begin
 			while(sdram_read_en == 1'b0)	// for read SRAM operation
 			begin							// for writing read value into
@@ -237,7 +241,7 @@ begin
 			// update other counters
 		end
 		//$info("start of writing image");
-		for(j = 0; j < imageWidth - 2; j=j+1)
+		for(j = 0; j < imageWidth - 1; j=j+1)
 		begin
 			while(sdram_write_en == 1'b0)	// for read SRAM operation
 			begin							// Value read to be written
