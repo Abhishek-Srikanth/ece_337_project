@@ -220,7 +220,7 @@ sram_simulation ennodaSRAM_simulation
 	.enable					(sram_en),
 
 	.out_data				(data_sram),			// 31:0
-	.dataReadValid			(sraM_datareadvalid)
+	.dataReadValid			(sram_datareadvalid)
 );
 
 endmodule
