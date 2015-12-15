@@ -410,7 +410,7 @@ begin: outputLogic
 
 		firstRow_writeSRAM: 		// sets addr_calc mode ; set SRAM_mode ; pulse SRAM_en (y)
 		begin
-			enable_i = 1'b0;
+			enable_i = 1'b1;				// NOTE: TESTING
 			enable_j = 1'b0;
 			enable_i_wr = 1'b0;
 			enable_addr_calc_sram = 1'b0;
@@ -429,7 +429,7 @@ begin: outputLogic
 
 		firstRow_updateCounters: 	// pulse i_enable ; pulse addr_calc_en (y)
 		begin
-			enable_i = 1'b1;				// <-- pulse on
+			enable_i = 1'b0;				// <-- pulse on	// NOTE: TESTING
 			enable_j = 1'b0;
 			enable_i_wr = 1'b0;
 			enable_addr_calc_sram = 1'b1;	// <-- pulse on
@@ -775,7 +775,7 @@ begin: outputLogic
 
 		WBShift_updateCounters: 	// set WB_mode ; pulse WB_en ; pulse i_en ; pulse addr_calc_en	
 		begin
-			enable_i = 1'b0;				// <-- pulsed later
+			enable_i = 1'b1;				// <-- pulsed later	// NOTE: TESTING
 			enable_j = 1'b0;
 			enable_i_wr = 1'b0;
 			enable_addr_calc_sram = 1'b1;	// <-- pulse on
@@ -794,7 +794,7 @@ begin: outputLogic
 		
 		updateCounters_otherModes:
 		begin
-			enable_i = 1'b1;				// <-- pulse on
+			enable_i = 1'b0;				// <-- pulse on	// NOTE: TESTING
 			enable_j = 1'b0;
 			enable_i_wr = 1'b0;
 			enable_addr_calc_sram = 1'b1;	// <-- pulse on
@@ -854,7 +854,7 @@ begin: outputLogic
 		begin
 			enable_i = 1'b0;
 			enable_j = 1'b0;
-			enable_i_wr = 1'b0;
+			enable_i_wr = 1'b1;				// NOTE: TESTING
 			enable_addr_calc_sram = 1'b0;
 			enable_addr_calc_sdram = 1'b0;
 			enable_WB = 1'b0;
@@ -873,7 +873,7 @@ begin: outputLogic
 		begin
 			enable_i = 1'b0;
 			enable_j = 1'b0;
-			enable_i_wr = 1'b1;
+			enable_i_wr = 1'b0;				// <-- pulse on	// NOTE: TESTING
 			enable_addr_calc_sram = 1'b1;	// <-- pulse on
 			enable_addr_calc_sdram = 1'b1;	// <-- pulse on
 			enable_WB = 1'b0;
