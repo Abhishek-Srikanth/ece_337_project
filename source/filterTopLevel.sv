@@ -44,7 +44,7 @@ end
 // port mapping to brightness Filter
 brightnessFilter brighter
 (
-	.in		(in),
+	.in		( {debayerResult[23:16], debayerResult[15:8], debayerResult[15:8], debayerResult[7:0]} ),
 	.beta	(brightnessCoeff),
 	.result	(brightnessResult)
 );
