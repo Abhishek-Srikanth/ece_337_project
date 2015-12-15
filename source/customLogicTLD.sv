@@ -18,6 +18,7 @@ module customLogicTLD
 	input wire [25:0] finish_addr_sdram,
 	input wire [1:0] filterMode,
 	input wire [7:0] betaValue,
+	input wire [31:0] white,
 	input wire sdram_datareadvalid,
 	
 	input wire [31:0] data_sdram,
@@ -208,6 +209,7 @@ filterTopLevel topLevelFilterBlock
 	.brightnessCoeff		(betaValue),		// 7:0
 	.wb_mode				(mode_WB),			// 2:0
 	.wb_en					(WB_en),
+	.white					(white),			// 31:0
 
 	.result					(postFilterData)	// 31:0
 );

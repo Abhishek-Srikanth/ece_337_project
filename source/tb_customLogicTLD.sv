@@ -32,6 +32,7 @@ reg [25:0] start_addr_sdram;
 reg [25:0] finish_addr_sdram;
 reg [1:0] filterMode;
 reg [7:0] betaValue;
+reg [31:0] white;
 reg [31:0] data_sdram;
 
 // output of logic to be verified:
@@ -61,6 +62,7 @@ customLogicTLD ennodaCustomLogic
 	.finish_addr_sdram			(finish_addr_sdram),// 25:0
 	.filterMode					(filterMode),		// 1:0
 	.betaValue					(betaValue),		// 7:0
+	.white						(white),
 	.data_sdram					(data_sdram),		// 31:0
 	.sdram_datareadvalid		(sdram_datareadvalid),
 
@@ -92,7 +94,8 @@ task initialize();
 	*/
 	fin = $fopen("lena_out_fpga.ppm", "r");
 	fout = $fopen("lena_postChip.ppm", "w");
-
+	//fin = $fopen("sunset_out_fpga.ppm", "r");
+	//fout = $fopen("sunset_postChip.ppm", "w");
 	//fin = $fopen("colorSet_out_fpga.ppm", "r");
 	//fout = $fopen("colorSet_postChip.ppm", "w");
 	// read magic number and write same
@@ -118,14 +121,16 @@ task initialize();
 	finish_addr_sdram = '0;	// of the image is the same
 //	filterMode = 2'b00;		// general bayer filter (nothing special)
 //	filterMode = 2'b01;		// brightness filter
-	filterMode = 2'b10;		// horizontal blur filter
+//	filterMode = 2'b10;		// horizontal blur filter
+	filterMode = 2'b11;		// whitebalance
 
 	betaValue = 8'd20;		// Not used because of betaValue
+	white = 32'hffffffff;	
 	data_sdram = '0;		// doesnt matter right now
 	sdram_datareadvalid = 1'b0;
 	
-		exp_address_sdram = '0;
-		exp_write_address_sdram = '0;
+	exp_address_sdram = '0;
+	exp_write_address_sdram = '0;
 endtask
 
 task readFile();

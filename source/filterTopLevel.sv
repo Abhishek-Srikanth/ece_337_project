@@ -15,6 +15,7 @@ module filterTopLevel
 	input wire [7:0] brightnessCoeff,
 	input wire [2:0] wb_mode,
 	input wire wb_en,
+	input wire [31:0] white,
 
 	output reg [31:0] result
 );
@@ -22,6 +23,7 @@ module filterTopLevel
 reg [31:0] brightnessResult;
 reg [31:0] debayerResult;
 reg [31:0] horBlurResult;
+reg [31:0] whiteBalanceResult;
 
 always_comb
 begin
@@ -39,7 +41,7 @@ begin
 	end
 	else if(filterMode == 2'b11)
 	begin
-		result = '0;
+		result = whiteBalanceResult;
 	end
 	else
 		result = '1;
@@ -71,5 +73,12 @@ horblur horizontalBlur
    	.blur		(horBlurResult)	// 31:0
 );
 
+whiteBalance ennodaWhiteBalance
+(
+	.in(debayerResult),
+	.white(white),
+
+	.out(whiteBalanceResult)
+);
 
 endmodule
