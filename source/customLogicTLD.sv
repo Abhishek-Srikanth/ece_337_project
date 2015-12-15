@@ -52,7 +52,7 @@ wire [31:0] delayedData_sdram;
 wire [31:0] delayedData_sram;
 wire [31:0] data_sram;
 
-assign writeData_sdram = delayedData_sram;
+assign writeData_sdram = data_sram; //delayedData_sram;
 
 // rising edge detector
 risingEdgeDetector edgeDetector
@@ -63,7 +63,7 @@ risingEdgeDetector edgeDetector
 	.start_flag				(start_flag)
 );
 
-// delay data that was read from the SRAM
+/* delay data that was read from the SRAM
 delaySingleClock dataFromSRAM
 (
 	.clk					(clk),
@@ -72,6 +72,7 @@ delaySingleClock dataFromSRAM
 
 	.out					(delayedData_sram)	// 31:0
 );
+*/
 
 // delay data that was read from SDRAM
 delaySingleClock dataFromSDRAM
@@ -176,7 +177,7 @@ wbuffer windowBuffer
    	.enable_CU				(WB_en),
    	.mode					(mode_WB),	// 2:0
    	.data_read				(delayedData_sdram[7:0]),	// 7:0	// data_read is from sdram	// want 8 bits only
-   	.data					(delayedData_sram[7:0]),	// 7:0	// data is from sram		// want 8 bits only
+   	.data					(data_sram[7:0]),			// 7:0	// data is from sram		// want 8 bits only
 
    	.w_1					(wb1),	// 7:0
    	.w_2					(wb2),	// 7:0

@@ -105,6 +105,7 @@ task initialize();
 	$fscanf(fin, "%d %d", imageWidth, imageHeight);
 	$fwrite(fout,"%3d %3d\n", imageWidth - 13'd1, imageHeight - 13'd1);
 	$fscanf(fin, "%3d", maxVal);
+	magicNo = $fgetc(fin);
 	$fwrite(fout,"%3d\n", maxVal);	
 	
 	n_rst = 1'b1;
@@ -122,7 +123,7 @@ endtask
 
 task readFile();
 	magicNo = $fgetc(fin);
-	data_sdram[7:0] = magicNo;
+	data_sdram[31:24] = magicNo;
 	//$fwrite(fout, "%c", magicNo);
 	magicNo = $fgetc(fin);
 	data_sdram[23:16] = magicNo;
@@ -131,7 +132,7 @@ task readFile();
 	data_sdram[15:8] = magicNo;
 	//$fwrite(fout, "%c", magicNo);
 	magicNo = $fgetc(fin);
-	data_sdram[31:24] = magicNo;
+	data_sdram[7:0] = magicNo;
 endtask
 
 task writeToFile();
@@ -139,6 +140,7 @@ task writeToFile();
 	$fwrite(fout, "%c", writeData_sdram[23:16]);
 	$fwrite(fout, "%c", writeData_sdram[15:8]);
 	$fwrite(fout, "%c", writeData_sdram[7:0]);
+	$info("writing %h", writeData_sdram);
 endtask
 
 initial
@@ -177,7 +179,7 @@ begin
 
 	clock(1);
 	// j counter is being updated
-	$info("first row operations complete");
+	//$info("first row operations complete");
 
 //	for(i = 1; i < 3; i=i+1)
 	for(i = 1; i < imageHeight; i=i+1)
@@ -205,7 +207,7 @@ begin
 		clock(1);
 		// update counters
 		
-		$info("start of anyCol operation");
+		//$info("start of anyCol operation");
 		for(j = 1; j < imageWidth - 1; j=j+1)		// TODO check why if not working
 		begin
 			while(sdram_read_en == 1'b0)	// for read SRAM operation
@@ -234,8 +236,8 @@ begin
 			clock(1);
 			// update other counters
 		end
-		$info("start of writing image");
-		for(j = 0; j < imageWidth - 1; j=j+1)
+		//$info("start of writing image");
+		for(j = 0; j < imageWidth - 2; j=j+1)
 		begin
 			while(sdram_write_en == 1'b0)	// for read SRAM operation
 			begin							// Value read to be written
