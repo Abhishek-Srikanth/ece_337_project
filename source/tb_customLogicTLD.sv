@@ -49,6 +49,16 @@ integer fin;
 integer fout;
 integer magicNo, maxVal;
 
+wire [31:0] sram_dataFromSDRAM;			
+wire [31:0] postFilterData;				
+wire [25:0] address_sram;				
+wire mode_sram;
+wire addrCalc_mode_sram;
+wire sram_en;
+
+wire [31:0] data_sram; // 31:0
+wire sram_datareadvalid;
+
 
 // DUT port mapping
 customLogicTLD ennodaCustomLogic
@@ -70,7 +80,33 @@ customLogicTLD ennodaCustomLogic
 	.sdram_write_en				(sdram_write_en),
 	.address_sdram				(address_sdram), 	// 25:0
 	.writeData_sdram			(writeData_sdram),	// 31:0
-	.finish_flag				(finish_flag)
+	.finish_flag				(finish_flag),
+
+	.sram_dataFromSDRAM			(sram_dataFromSDRAM),	// 31:0
+	.postFilterData				(postFilterData),	// 31:0
+	.address_sram				(address_sram),	// 25:0
+	.mode_sram					(mode_sram),
+	.addrCalc_mode_sram			(addrCalc_mode_sram),
+	.sram_en					(sram_en),
+
+	.data_sram					(data_sram),	// 31:0
+	.sram_datareadvalid			(sram_datareadvalid)
+
+);
+
+// sram is outside top level
+sram_simulation ennodaSRAM_simulation
+(
+	.clk					(clk),
+	.sdram_data				(sram_dataFromSDRAM),	// 31:0
+	.wb_data				(postFilterData),		// 31:0
+	.address				(address_sram),			// 25:0	
+	.mode					(mode_sram),			// read/write
+	.addrCalcMode			(addrCalc_mode_sram),
+	.enable					(sram_en),
+
+	.out_data				(data_sram),			// 31:0
+	.dataReadValid			(sram_datareadvalid)
 );
 
 task clock(input integer noClocks);
@@ -92,10 +128,10 @@ task initialize();
 		| 32BitData( x Width x Height)EOF	|
 		-------------------------------------
 	*/
-	fin = $fopen("lena_out_fpga.ppm", "r");
-	fout = $fopen("lena_postChip.ppm", "w");
-	//fin = $fopen("sunset_out_fpga.ppm", "r");
-	//fout = $fopen("sunset_postChip.ppm", "w");
+	//fin = $fopen("lena_out_fpga.ppm", "r");
+	//fout = $fopen("lena_postChip.ppm", "w");
+	fin = $fopen("sunset_out_fpga.ppm", "r");
+	fout = $fopen("sunset_postChip.ppm", "w");
 	//fin = $fopen("colorSet_out_fpga.ppm", "r");
 	//fout = $fopen("colorSet_postChip.ppm", "w");
 	// read magic number and write same
@@ -114,15 +150,15 @@ task initialize();
 	$fscanf(fin, "%3d", maxVal);
 	magicNo = $fgetc(fin);
 	$fwrite(fout,"%3d\n", maxVal);	
-	
+
 	n_rst = 1'b1;
 	startControlRegister = 1'b0;
 	start_addr_sdram = '0;	// read and write address
 	finish_addr_sdram = '0;	// of the image is the same
-//	filterMode = 2'b00;		// general bayer filter (nothing special)
+	filterMode = 2'b00;		// general bayer filter (nothing special)
 //	filterMode = 2'b01;		// brightness filter
 //	filterMode = 2'b10;		// horizontal blur filter
-	filterMode = 2'b11;		// whitebalance
+//	filterMode = 2'b11;		// whitebalance
 
 	betaValue = 8'd20;		// Not used because of betaValue
 	white = 32'hffffffff;	
@@ -131,6 +167,7 @@ task initialize();
 	
 	exp_address_sdram = '0;
 	exp_write_address_sdram = '0;
+	
 endtask
 
 task readFile();
