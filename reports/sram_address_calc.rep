@@ -1,0 +1,146 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : sram_address_calc
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:01:44 2015
+****************************************
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+  Startpoint: rowCache/count_out_reg[0]
+              (rising edge-triggered flip-flop)
+  Endpoint: sram_addr[25]
+            (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  rowCache/count_out_reg[0]/CLK (DFFSR)                   0.00       0.00 r
+  rowCache/count_out_reg[0]/Q (DFFSR)                     0.69       0.69 f
+  rowCache/count_out[0] (flex_counter_NUM_CNT_BITS13_1)
+                                                          0.00       0.69 f
+  U87/Y (MUX2X1)                                          0.15       0.85 r
+  U86/Y (INVX1)                                           0.25       1.10 f
+  r307/A[0] (sram_address_calc_DW01_add_0)                0.00       1.10 f
+  r307/U6/Y (AND2X2)                                      0.31       1.41 f
+  r307/U1_1/YC (FAX1)                                     0.42       1.83 f
+  r307/U1_2/YC (FAX1)                                     0.45       2.28 f
+  r307/U1_3/YC (FAX1)                                     0.45       2.73 f
+  r307/U1_4/YC (FAX1)                                     0.45       3.19 f
+  r307/U1_5/YC (FAX1)                                     0.45       3.64 f
+  r307/U1_6/YC (FAX1)                                     0.45       4.10 f
+  r307/U1_7/YC (FAX1)                                     0.45       4.55 f
+  r307/U1_8/YC (FAX1)                                     0.45       5.01 f
+  r307/U1_9/YC (FAX1)                                     0.45       5.46 f
+  r307/U1_10/YC (FAX1)                                    0.45       5.91 f
+  r307/U1_11/YC (FAX1)                                    0.45       6.37 f
+  r307/U1_12/YC (FAX1)                                    0.45       6.81 f
+  r307/U7/Y (AND2X2)                                      0.28       7.10 f
+  r307/U12/Y (AND2X2)                                     0.24       7.34 f
+  r307/U5/Y (AND2X2)                                      0.24       7.59 f
+  r307/U11/Y (AND2X2)                                     0.24       7.83 f
+  r307/U4/Y (AND2X2)                                      0.24       8.07 f
+  r307/U10/Y (AND2X2)                                     0.24       8.32 f
+  r307/U3/Y (AND2X2)                                      0.24       8.56 f
+  r307/U9/Y (AND2X2)                                      0.24       8.81 f
+  r307/U2/Y (AND2X2)                                      0.24       9.05 f
+  r307/U8/Y (AND2X2)                                      0.24       9.29 f
+  r307/U1/Y (AND2X2)                                      0.24       9.54 f
+  r307/U13/Y (AND2X2)                                     0.23       9.77 f
+  r307/U14/Y (XOR2X1)                                     0.15       9.92 f
+  r307/SUM[25] (sram_address_calc_DW01_add_0)             0.00       9.92 f
+  sram_addr[25] (out)                                     0.00       9.92 f
+  data arrival time                                                  9.92
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+ 
+****************************************
+Report : area
+Design : sram_address_calc
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:01:44 2015
+****************************************
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+Number of ports:                          316
+Number of nets:                           682
+Number of cells:                          381
+Number of combinational cells:            318
+Number of sequential cells:                57
+Number of macros/black boxes:               0
+Number of buf/inv:                         87
+Number of references:                       8
+
+Combinational area:             107415.000000
+Buf/Inv area:                    12672.000000
+Noncombinational area:           44352.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                151767.000000
+Total area:                 undefined
+1
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : sram_address_calc
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:01:44 2015
+****************************************
+
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+sram_address_calc                        10.965   18.409   48.988   29.374 100.0
+  sub_44 (sram_address_calc_DW01_dec_0)
+                                          2.162    1.777    1.991    3.939  13.4
+  r307 (sram_address_calc_DW01_add_0)  2.34e-02    5.001    8.420    5.024  17.1
+  outputAddr (flex_counter_NUM_CNT_BITS13_0)
+                                          1.721    4.221   16.055    5.942  20.2
+    add_56 (flex_counter_NUM_CNT_BITS13_0_DW01_inc_0)
+                                       1.08e-02 9.77e-03    3.137 2.05e-02   0.1
+  rowCache (flex_counter_NUM_CNT_BITS13_1)
+                                          1.619    3.437   16.055    5.056  17.2
+    add_56 (flex_counter_NUM_CNT_BITS13_1_DW01_inc_0)
+                                       9.78e-03 8.85e-03    3.137 1.86e-02   0.1
+1

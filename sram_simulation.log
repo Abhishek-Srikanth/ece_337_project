@@ -1,0 +1,108 @@
+Synthesizing design: sram_simulation.sv
+dc_shell-t -x "source -echo do_mapping.tcl"
+                                        
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+                                        
+               Version K-2015.06-SP1 for linux64 - Jul 21, 2015 
+                                        
+                    Copyright (c) 1988 - 2015 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+Initializing gui preferences from file  /home/ecegrid/a/mg50/.synopsys_dv_prefs.tcl
+# Step 1:  Read in the source file
+analyze -format sverilog -lib WORK {address_calc.sv brightnessFilter.sv controlUnit.sv debayer.sv delaySingleClock.sv filterTopLevel.sv flex_counter.sv i_col_counter.sv i_wr_counter.sv j_row_counter.sv rggb.sv risingEdgeDetector.sv sdram_address_calc.sv sram_address_calc.sv wbuffer.sv horblur.sv whiteBalance.sv  sram_simulation.sv}
+Running PRESTO HDLC
+Compiling source file ./source/address_calc.sv
+Compiling source file ./source/brightnessFilter.sv
+Compiling source file ./source/controlUnit.sv
+Warning:  ./source/controlUnit.sv:59: Using default enum base size of 32. (VER-533)
+Compiling source file ./source/debayer.sv
+Compiling source file ./source/delaySingleClock.sv
+Compiling source file ./source/filterTopLevel.sv
+Compiling source file ./source/flex_counter.sv
+Compiling source file ./source/i_col_counter.sv
+Compiling source file ./source/i_wr_counter.sv
+Compiling source file ./source/j_row_counter.sv
+Compiling source file ./source/rggb.sv
+Compiling source file ./source/risingEdgeDetector.sv
+Compiling source file ./source/sdram_address_calc.sv
+Compiling source file ./source/sram_address_calc.sv
+Compiling source file ./source/wbuffer.sv
+Compiling source file ./source/horblur.sv
+Compiling source file ./source/whiteBalance.sv
+Compiling source file ./source/sram_simulation.sv
+Presto compilation completed successfully.
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+Loading db file '/package/eda/synopsys/syn-K-2015.06-SP1/libraries/syn/dw_foundation.sldb'
+elaborate sram_simulation -lib WORK
+Loading db file '/package/eda/synopsys/syn-K-2015.06-SP1/libraries/syn/gtech.db'
+Loading db file '/package/eda/synopsys/syn-K-2015.06-SP1/libraries/syn/standard.sldb'
+  Loading link library 'osu05_stdcells'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+
+Inferred memory devices in process
+	in routine sram_simulation line 34 in file
+		'./source/sram_simulation.sv'.
+================================================================================
+|    Register Name    |   Type    | Width  | Bus | MB | AR | AS | SR | SS | ST |
+================================================================================
+|    out_data_reg     | Flip-flop |   32   |  Y  | N  | N  | N  | N  | N  | N  |
+|  dataReadValid_reg  | Flip-flop |   1    |  N  | N  | N  | N  | N  | N  | N  |
+|     memory_reg      | Flip-flop | 524320 |  Y  | N  | N  | N  | N  | N  | N  |
+================================================================================
+Presto compilation completed successfully.
+Elaborated 1 design.
+Current design is now 'sram_simulation'.
+uniquify
+# Step 2: Set design constraints
+# Uncomment below to set timing, area, power, etc. constraints
+# set_max_delay <delay> -from "<input>" -to "<output>"
+# set_max_area <area>
+# set_max_total_power <power> mW
+# Step 3: Compile the design
+compile -map_effort medium
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | K-2015.06-DWBB_201506.1 |     *     |
+| Licensed DW Building Blocks        | K-2015.06-DWBB_201506.1 |           |
+============================================================================
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'sram_simulation'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Design 'sram_simulation' has no optimization constraints set. (OPT-108)
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Structuring 'sram_simulation'
+  Mapping 'sram_simulation'
+
+Information: Ignoring interrupt signal since design is being mapped.
+             One more interrupt will abort optimization without
+             transferring the design... (INT-7)
+
+Information: Aborting optimization without transferring the design... (INT-8)
+
+Information: Process terminated by interrupt. (INT-4)

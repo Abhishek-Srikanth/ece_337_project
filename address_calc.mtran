@@ -1,0 +1,537 @@
+# //  Questa Sim-64
+# //  Version 10.3b linux_x86_64 May 29 2014
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# vsim -Lf /home/ecegrid/a/ece337/Class0.5u/ECE337_IP/vsim -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work -L /home/ecegrid/a/ece337/Class0.5u/GOLD_LIB "+no_glitch_msg" -coverage -voptargs="+acc" -i -t ps mapped_work/.tb_address_calc 
+# Start time: 19:10:00 on Dec 16,2015
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: mapped/address_calc.v(959): (vopt-2685) [TFMPC] - Too few port connections for 'rowCache'.  Expected 7, found 6.
+# ** Warning: mapped/address_calc.v(959): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/address_calc.v(962): (vopt-2685) [TFMPC] - Too few port connections for 'outputAddr'.  Expected 7, found 6.
+# ** Warning: mapped/address_calc.v(962): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/address_calc.v(967): (vopt-2685) [TFMPC] - Too few port connections for 'r307'.  Expected 5, found 4.
+# ** Warning: mapped/address_calc.v(967): (vopt-2718) [TFMPC] - Missing connection for port 'CO'.
+# Loading sv_std.std
+# Loading work.tb_address_calc(fast)
+# Loading work.address_calc(fast)
+# Loading work.sdram_address_calc(fast)
+# Loading work.sdram_address_calc_DW01_inc_0(fast)
+# Loading work.sram_address_calc(fast)
+# Loading work.flex_counter_NUM_CNT_BITS13_1(fast)
+# Loading work.flex_counter_NUM_CNT_BITS13_1_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS13_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS13_0_DW01_inc_0(fast)
+# Loading work.sram_address_calc_DW01_add_0(fast)
+# Loading work.sram_address_calc_DW01_dec_0(fast)
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.math_real(body)
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.dffsr(metastabilitywrapperarch)#1
+# Loading ieee.vital_timing(body)
+# Loading ieee.vital_primitives(body)
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.prim(body)
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.dffsr_core(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.hax1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.invx2(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.xor2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.invx4(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.invx8(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.bufx2(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.invx1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.mux2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.nand2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.oai21x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.aoi22x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.nor2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.aoi21x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.nand3x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.or2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.xnor2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.fax1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.and2x2(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.and2x1(behavioral)#1
+add wave -position insertpoint sim:/tb_address_calc/*
+run 20000ns
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[0] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[1] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[4] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[6] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[7] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[9] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[10] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[11] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[12] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[13] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[14] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[15] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[16] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[17] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[18] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[19] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[20] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[21] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[22] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[23] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[24] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.071 ns; At : 0.175 ns
+#    Time: 175 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[25] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.008 ns; At : 0.183 ns
+#    Time: 183 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[11] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.008 ns; At : 0.183 ns
+#    Time: 183 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[9] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.008 ns; At : 0.183 ns
+#    Time: 183 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[8] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.008 ns; At : 0.183 ns
+#    Time: 183 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[7] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.008 ns; At : 0.183 ns
+#    Time: 183 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[5] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.008 ns; At : 0.183 ns
+#    Time: 183 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[4] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.008 ns; At : 0.183 ns
+#    Time: 183 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[3] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[0] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[1] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[2] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[6] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[10] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[12] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[13] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[14] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[15] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[16] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[17] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[18] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[19] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[20] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[21] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[22] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[23] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[24] /CELL_CORE
+# ** Warning: */DFFSR_CORE REMOVAL High VIOLATION ON S WITH RESPECT TO R;
+#   Expected := 0.094 ns; Observed := 0.083 ns; At : 0.187 ns
+#    Time: 187 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[25] /CELL_CORE
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[0] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[0] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[1] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[1] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[2] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[2] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[3] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[3] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[4] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[4] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[5] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[5] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[6] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[6] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[7] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[7] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[8] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[8] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[9] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[9] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[10] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[10] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[11] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[11] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[12] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[12] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[13] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[13] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[14] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[14] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[15] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[15] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[16] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[16] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[17] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[17] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[18] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[18] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[19] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[19] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[20] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[20] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[21] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[21] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[22] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[22] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[23] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[23] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[24] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[24] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[25] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[25] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[0] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[11] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[10] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[9] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[8] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[7] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[6] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[5] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[4] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[3] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[2] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[1] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/rollover_flag_reg
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[12] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[0] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[11] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[10] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[9] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[8] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[7] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[6] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[5] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[4] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[3] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[2] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[1] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/rollover_flag_reg
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[12] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[0] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[0] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[1] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[1] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[2] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[2] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[3] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[3] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[4] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[4] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[5] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[5] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[6] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[6] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[7] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[7] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[8] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[8] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[9] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[9] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[10] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[10] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[11] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[11] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[12] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[12] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[13] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[13] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[14] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[14] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[15] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[15] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[16] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[16] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[17] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[17] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[18] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[18] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[19] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[19] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[20] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[20] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[21] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[21] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[22] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[22] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[23] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[23] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[24] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[24] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\start_address_reg_reg[25] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sdramAddrCalc/\finish_address_reg_reg[25] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[0] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[11] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[10] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[9] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[8] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[7] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[6] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[5] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[4] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[3] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[2] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[1] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/rollover_flag_reg
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/rowCache/\count_out_reg[12] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[0] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[11] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[10] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[9] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[8] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[7] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[6] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[5] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[4] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[3] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[2] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[1] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/rollover_flag_reg
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_address_calc/addrCalc/sramAddrCalc/outputAddr/\count_out_reg[12] 
+# ** Info: to simulate operation of SDRAM being read and SRAM being written into
+#    Time: 160 ns  Scope: tb_address_calc File: source/tb_address_calc.sv Line: 148
+# ** Info: it also simulates operation of SDRAM being read to WB and SRAM being read to WB
+#    Time: 160 ns  Scope: tb_address_calc File: source/tb_address_calc.sv Line: 149
+# ** Info: To simulate operation of writing into output addr of sram (no-op to sdram)
+#    Time: 4360 ns  Scope: tb_address_calc File: source/tb_address_calc.sv Line: 172
+# ** Info: to simulate operation of SDRAM being written into and SRAM's output being read from
+#    Time: 6680 ns  Scope: tb_address_calc File: source/tb_address_calc.sv Line: 191
+# ** Info:  ^v^v^v^v^v^v^v^v^v^v Finished ^v^v^v^v^v^v^v^v^v^v^
+#    Time: 10280 ns  Scope: tb_address_calc File: source/tb_address_calc.sv Line: 219
+# End time: 19:10:27 on Dec 16,2015, Elapsed time: 0:00:27
+# Errors: 0, Warnings: 214

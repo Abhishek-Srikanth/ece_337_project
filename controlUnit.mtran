@@ -1,0 +1,104 @@
+# //  Questa Sim-64
+# //  Version 10.3b linux_x86_64 May 29 2014
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# vsim -Lf /home/ecegrid/a/ece337/Class0.5u/ECE337_IP/vsim -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work -L /home/ecegrid/a/ece337/Class0.5u/GOLD_LIB "+no_glitch_msg" -coverage -voptargs="+acc" -i -t ps mapped_work/.tb_controlUnit 
+# Start time: 19:24:19 on Dec 16,2015
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading sv_std.std
+# Loading work.tb_controlUnit(fast)
+# Loading work.controlUnit(fast)
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.math_real(body)
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.dffsr(metastabilitywrapperarch)#1
+# Loading ieee.vital_timing(body)
+# Loading ieee.vital_primitives(body)
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.prim(body)
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.dffsr_core(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.latch(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.bufx2(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.oai21x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.nand3x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.nor2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.mux2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.or2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.oai22x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.aoi21x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.invx1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.nand2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.aoi22x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.and2x1(behavioral)#1
+add wave -position insertpoint sim:/tb_controlUnit/*
+run 2000ns
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_controlUnit/theBrain/\state_reg[0] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_controlUnit/theBrain/\state_reg[3] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_controlUnit/theBrain/\state_reg[2] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_controlUnit/theBrain/\state_reg[4] 
+# ** Warning: DFFSR instance grabbed an invalid value and is propagating a metastable value
+#    Time: 10660 ps  Iteration: 0  Instance: /tb_controlUnit/theBrain/\state_reg[1] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_controlUnit/theBrain/\state_reg[0] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_controlUnit/theBrain/\state_reg[3] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_controlUnit/theBrain/\state_reg[2] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_controlUnit/theBrain/\state_reg[4] 
+# ** Warning: DFFSR instance metastable output value decayed to a '1' value
+#    Time: 10800 ps  Iteration: 0  Instance: /tb_controlUnit/theBrain/\state_reg[1] 
+# ** Error: expected i_enable to pulse
+#    Time: 220 ns  Scope: tb_controlUnit.firstRow_updateCounters File: source/tb_controlUnit.sv Line: 136
+# ** Error: expected i_enable to pulse
+#    Time: 280 ns  Scope: tb_controlUnit.firstRow_updateCounters File: source/tb_controlUnit.sv Line: 136
+# ** Info: start firstCol operations
+#    Time: 320 ns  Scope: tb_controlUnit.firstColOperations File: source/tb_controlUnit.sv Line: 145
+# ** Info: Starting any Col operation
+#    Time: 460 ns  Scope: tb_controlUnit.anyColOperations File: source/tb_controlUnit.sv Line: 188
+# ** Error: i counter not being enabled
+#    Time: 620 ns  Scope: tb_controlUnit.anyColOperations File: source/tb_controlUnit.sv Line: 238
+# ** Info: Starting any Col operation
+#    Time: 640 ns  Scope: tb_controlUnit.anyColOperations File: source/tb_controlUnit.sv Line: 188
+# ** Error: i counter not being enabled
+#    Time: 800 ns  Scope: tb_controlUnit.anyColOperations File: source/tb_controlUnit.sv Line: 238
+# ** Info: Start to ouptut row
+#    Time: 820 ns  Scope: tb_controlUnit.outputImgOperations File: source/tb_controlUnit.sv Line: 248
+# ** Error: i_wr not enabled for update
+#    Time: 880 ns  Scope: tb_controlUnit.outputImgOperations File: source/tb_controlUnit.sv Line: 267
+# ** Info: Start to ouptut row
+#    Time: 900 ns  Scope: tb_controlUnit.outputImgOperations File: source/tb_controlUnit.sv Line: 248
+# ** Error: i_wr not enabled for update
+#    Time: 960 ns  Scope: tb_controlUnit.outputImgOperations File: source/tb_controlUnit.sv Line: 267
+# ** Info: start firstCol operations
+#    Time: 1 us  Scope: tb_controlUnit.firstColOperations File: source/tb_controlUnit.sv Line: 145
+# ** Info: Starting any Col operation
+#    Time: 1140 ns  Scope: tb_controlUnit.anyColOperations File: source/tb_controlUnit.sv Line: 188
+# ** Error: i counter not being enabled
+#    Time: 1300 ns  Scope: tb_controlUnit.anyColOperations File: source/tb_controlUnit.sv Line: 238
+# ** Info: Starting any Col operation
+#    Time: 1320 ns  Scope: tb_controlUnit.anyColOperations File: source/tb_controlUnit.sv Line: 188
+# ** Error: i counter not being enabled
+#    Time: 1480 ns  Scope: tb_controlUnit.anyColOperations File: source/tb_controlUnit.sv Line: 238
+# ** Info: Start to ouptut row
+#    Time: 1500 ns  Scope: tb_controlUnit.outputImgOperations File: source/tb_controlUnit.sv Line: 248
+# ** Error: i_wr not enabled for update
+#    Time: 1560 ns  Scope: tb_controlUnit.outputImgOperations File: source/tb_controlUnit.sv Line: 267
+# ** Info: Start to ouptut row
+#    Time: 1580 ns  Scope: tb_controlUnit.outputImgOperations File: source/tb_controlUnit.sv Line: 248
+# ** Error: i_wr not enabled for update
+#    Time: 1640 ns  Scope: tb_controlUnit.outputImgOperations File: source/tb_controlUnit.sv Line: 267
+# ** Info: mudichaachu
+#    Time: 1700 ns  Scope: tb_controlUnit File: source/tb_controlUnit.sv Line: 402
+# End time: 19:24:56 on Dec 16,2015, Elapsed time: 0:00:37
+# Errors: 0, Warnings: 10

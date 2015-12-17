@@ -1,0 +1,111 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : debayer
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:57:44 2015
+****************************************
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+  Startpoint: in[16] (input port)
+  Endpoint: out[14] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  in[16] (in)                              0.00       0.00 f
+  add_20/A[0] (debayer_DW01_add_0)         0.00       0.00 f
+  add_20/U1/Y (AND2X1)                     0.29       0.29 f
+  add_20/U1_1/YC (FAX1)                    0.45       0.73 f
+  add_20/U1_2/YC (FAX1)                    0.45       1.19 f
+  add_20/U1_3/YC (FAX1)                    0.45       1.64 f
+  add_20/U1_4/YC (FAX1)                    0.45       2.09 f
+  add_20/U1_5/YC (FAX1)                    0.45       2.55 f
+  add_20/U1_6/YC (FAX1)                    0.45       3.00 f
+  add_20/U1_7/YS (FAX1)                    0.38       3.38 r
+  add_20/SUM[7] (debayer_DW01_add_0)       0.00       3.38 r
+  out[14] (out)                            0.00       3.38 r
+  data arrival time                                   3.38
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+ 
+****************************************
+Report : area
+Design : debayer
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:57:44 2015
+****************************************
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+Number of ports:                           93
+Number of nets:                            73
+Number of cells:                           11
+Number of combinational cells:              8
+Number of sequential cells:                 2
+Number of macros/black boxes:               0
+Number of buf/inv:                          0
+Number of references:                       1
+
+Combinational area:               7848.000000
+Buf/Inv area:                        0.000000
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                  7848.000000
+Total area:                 undefined
+1
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : debayer
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:57:44 2015
+****************************************
+
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+debayer                                   1.068    3.735    2.667    4.803 100.0
+  add_20 (debayer_DW01_add_0)             1.068    3.735    2.667    4.803 100.0
+1

@@ -1,0 +1,149 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : horblur
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 21:08:07 2015
+****************************************
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+  Startpoint: R_1_reg[0] (rising edge-triggered flip-flop)
+  Endpoint: blur[22] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  R_1_reg[0]/CLK (DFFPOSX1)                               0.00       0.00 r
+  R_1_reg[0]/Q (DFFPOSX1)                                 0.39       0.39 f
+  add_6_root_add_46_7/A[0] (horblur_DW01_add_20)          0.00       0.39 f
+  add_6_root_add_46_7/U1/Y (AND2X2)                       0.29       0.68 f
+  add_6_root_add_46_7/U1_1/YS (FAX1)                      0.61       1.29 f
+  add_6_root_add_46_7/SUM[1] (horblur_DW01_add_20)        0.00       1.29 f
+  add_2_root_add_46_7/A[1] (horblur_DW01_add_16)          0.00       1.29 f
+  add_2_root_add_46_7/U1_1/YC (FAX1)                      0.46       1.75 f
+  add_2_root_add_46_7/U1_2/YC (FAX1)                      0.45       2.21 f
+  add_2_root_add_46_7/U1_3/YC (FAX1)                      0.45       2.66 f
+  add_2_root_add_46_7/U1_4/YC (FAX1)                      0.45       3.12 f
+  add_2_root_add_46_7/U1_5/YC (FAX1)                      0.45       3.57 f
+  add_2_root_add_46_7/U1_6/YC (FAX1)                      0.45       4.02 f
+  add_2_root_add_46_7/U1_7/YC (FAX1)                      0.45       4.48 f
+  add_2_root_add_46_7/U1_8/YS (FAX1)                      0.63       5.11 f
+  add_2_root_add_46_7/SUM[8] (horblur_DW01_add_16)        0.00       5.11 f
+  add_0_root_add_46_7/A[8] (horblur_DW01_add_14)          0.00       5.11 f
+  add_0_root_add_46_7/U1_8/YC (FAX1)                      0.46       5.57 f
+  add_0_root_add_46_7/U1_9/YS (FAX1)                      0.38       5.95 r
+  add_0_root_add_46_7/SUM[9] (horblur_DW01_add_14)        0.00       5.95 r
+  blur[22] (out)                                          0.00       5.95 r
+  data arrival time                                                  5.95
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+ 
+****************************************
+Report : area
+Design : horblur
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 21:08:07 2015
+****************************************
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+Number of ports:                          568
+Number of nets:                          1499
+Number of cells:                          971
+Number of combinational cells:            771
+Number of sequential cells:               185
+Number of macros/black boxes:               0
+Number of buf/inv:                        272
+Number of references:                      22
+
+Combinational area:             298890.000000
+Buf/Inv area:                    41184.000000
+Noncombinational area:          145152.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                444042.000000
+Total area:                 undefined
+1
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : horblur
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 21:08:08 2015
+****************************************
+
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+horblur                                  19.529   28.025  133.889   47.554 100.0
+  add_6_root_add_46_7 (horblur_DW01_add_20)
+                                       2.32e-02 1.81e-02    2.848 4.13e-02   0.1
+  add_5_root_add_46_7 (horblur_DW01_add_19)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+  add_2_root_add_46_7 (horblur_DW01_add_16)
+                                       1.83e-02 1.86e-02    3.212 3.69e-02   0.1
+  add_1_root_add_46_7 (horblur_DW01_add_15)
+                                          0.845    0.964    3.212    1.809   3.8
+  add_0_root_add_46_7 (horblur_DW01_add_14)
+                                       6.14e-02    0.725    2.950    0.787   1.7
+  add_6_root_add_47_7 (horblur_DW01_add_13)
+                                       2.21e-02 1.75e-02    2.848 3.96e-02   0.1
+  add_5_root_add_47_7 (horblur_DW01_add_12)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+  add_2_root_add_47_7 (horblur_DW01_add_9)
+                                       1.69e-02 1.80e-02    3.212 3.50e-02   0.1
+  add_1_root_add_47_7 (horblur_DW01_add_8)
+                                          0.849    0.967    3.212    1.816   3.8
+  add_0_root_add_47_7 (horblur_DW01_add_7)
+                                       6.32e-02    0.732    2.950    0.795   1.7
+  add_6_root_add_48_7 (horblur_DW01_add_6)
+                                       2.37e-02 1.87e-02    2.848 4.24e-02   0.1
+  add_5_root_add_48_7 (horblur_DW01_add_5)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+  add_2_root_add_48_7 (horblur_DW01_add_2)
+                                       1.82e-02 1.84e-02    3.212 3.66e-02   0.1
+  add_1_root_add_48_7 (horblur_DW01_add_1)
+                                          0.841    0.957    3.212    1.798   3.8
+  add_0_root_add_48_7 (horblur_DW01_add_0)
+                                       6.04e-02    0.719    2.950    0.780   1.6
+1

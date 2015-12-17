@@ -1,0 +1,180 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : filterTopLevel
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:42:45 2015
+****************************************
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+  Startpoint: in[16] (input port)
+  Endpoint: result[14] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in[16] (in)                                             0.00       0.00 f
+  debayerModule/in[16] (debayer)                          0.00       0.00 f
+  debayerModule/add_20/A[0] (debayer_DW01_add_0)          0.00       0.00 f
+  debayerModule/add_20/U1/Y (AND2X1)                      0.29       0.29 f
+  debayerModule/add_20/U1_1/YC (FAX1)                     0.45       0.73 f
+  debayerModule/add_20/U1_2/YS (FAX1)                     0.97       1.70 f
+  debayerModule/add_20/SUM[2] (debayer_DW01_add_0)        0.00       1.70 f
+  debayerModule/out[9] (debayer)                          0.00       1.70 f
+  horizontalBlur/data[9] (horblur)                        0.00       1.70 f
+  horizontalBlur/U374/Y (INVX1)                           0.38       2.08 r
+  horizontalBlur/U373/Y (XOR2X1)                          0.28       2.35 f
+  horizontalBlur/U372/Y (XOR2X1)                          0.33       2.68 f
+  horizontalBlur/add_1_root_add_47_7/B[1] (horblur_DW01_add_8)
+                                                          0.00       2.68 f
+  horizontalBlur/add_1_root_add_47_7/U1_1/YC (FAX1)       0.46       3.15 f
+  horizontalBlur/add_1_root_add_47_7/U1_2/YC (FAX1)       0.45       3.60 f
+  horizontalBlur/add_1_root_add_47_7/U1_3/YS (FAX1)       0.59       4.19 f
+  horizontalBlur/add_1_root_add_47_7/SUM[3] (horblur_DW01_add_8)
+                                                          0.00       4.19 f
+  horizontalBlur/add_0_root_add_47_7/B[3] (horblur_DW01_add_7)
+                                                          0.00       4.19 f
+  horizontalBlur/add_0_root_add_47_7/U1_3/YC (FAX1)       0.47       4.66 f
+  horizontalBlur/add_0_root_add_47_7/U1_4/YC (FAX1)       0.45       5.12 f
+  horizontalBlur/add_0_root_add_47_7/U1_5/YC (FAX1)       0.45       5.57 f
+  horizontalBlur/add_0_root_add_47_7/U1_6/YC (FAX1)       0.45       6.03 f
+  horizontalBlur/add_0_root_add_47_7/U1_7/YC (FAX1)       0.45       6.48 f
+  horizontalBlur/add_0_root_add_47_7/U1_8/YC (FAX1)       0.45       6.93 f
+  horizontalBlur/add_0_root_add_47_7/U1_9/YS (FAX1)       0.44       7.38 r
+  horizontalBlur/add_0_root_add_47_7/SUM[9] (horblur_DW01_add_7)
+                                                          0.00       7.38 r
+  horizontalBlur/blur[14] (horblur)                       0.00       7.38 r
+  U172/Y (AOI22X1)                                        0.13       7.51 f
+  U171/Y (NAND2X1)                                        0.12       7.63 r
+  result[14] (out)                                        0.00       7.63 r
+  data arrival time                                                  7.63
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+ 
+****************************************
+Report : area
+Design : filterTopLevel
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:42:45 2015
+****************************************
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+Number of ports:                         1124
+Number of nets:                          2647
+Number of cells:                         1570
+Number of combinational cells:           1344
+Number of sequential cells:               200
+Number of macros/black boxes:               0
+Number of buf/inv:                        362
+Number of references:                      12
+
+Combinational area:             521955.000000
+Buf/Inv area:                    54144.000000
+Noncombinational area:          145152.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                667107.000000
+Total area:                 undefined
+1
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : filterTopLevel
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:42:45 2015
+****************************************
+
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+filterTopLevel                          145.618  172.180  203.137  317.798 100.0
+  ennodaWhiteBalance (whiteBalance)      91.917   96.474   48.384  188.391  59.3
+    mult_285 (whiteBalance_DW_mult_uns_5)
+                                         20.897   21.259   11.261   42.155  13.3
+    mult_284 (whiteBalance_DW_mult_uns_4)
+                                         33.245   36.293   11.261   69.538  21.9
+    mult_283 (whiteBalance_DW_mult_uns_3)
+                                         21.040   21.366   11.261   42.406  13.3
+  horizontalBlur (horblur)               26.478   39.226  133.889   65.704  20.7
+    add_6_root_add_46_7 (horblur_DW01_add_20)
+                                       1.72e-02 1.35e-02    2.848 3.07e-02   0.0
+    add_5_root_add_46_7 (horblur_DW01_add_19)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+    add_2_root_add_46_7 (horblur_DW01_add_16)
+                                       1.34e-02 1.36e-02    3.212 2.70e-02   0.0
+    add_1_root_add_46_7 (horblur_DW01_add_15)
+                                          0.833    0.948    3.212    1.781   0.6
+    add_0_root_add_46_7 (horblur_DW01_add_14)
+                                          0.241    0.658    2.950    0.898   0.3
+    add_6_root_add_47_7 (horblur_DW01_add_13)
+                                       1.73e-02 1.35e-02    2.848 3.08e-02   0.0
+    add_5_root_add_47_7 (horblur_DW01_add_12)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+    add_2_root_add_47_7 (horblur_DW01_add_9)
+                                       1.33e-02 1.38e-02    3.212 2.70e-02   0.0
+    add_1_root_add_47_7 (horblur_DW01_add_8)
+                                          2.524    2.872    3.212    5.396   1.7
+    add_0_root_add_47_7 (horblur_DW01_add_7)
+                                          0.683    1.893    2.950    2.576   0.8
+    add_6_root_add_48_7 (horblur_DW01_add_6)
+                                       1.78e-02 1.38e-02    2.848 3.15e-02   0.0
+    add_5_root_add_48_7 (horblur_DW01_add_5)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+    add_2_root_add_48_7 (horblur_DW01_add_2)
+                                       1.38e-02 1.44e-02    3.212 2.82e-02   0.0
+    add_1_root_add_48_7 (horblur_DW01_add_1)
+                                          0.853    0.967    3.212    1.820   0.6
+    add_0_root_add_48_7 (horblur_DW01_add_0)
+                                          0.251    0.678    2.950    0.929   0.3
+  debayerModule (debayer)                10.233    3.714    2.667   13.947   4.4
+    add_20 (debayer_DW01_add_0)          10.233    3.714    2.667   13.947   4.4
+  brighter (brightnessFilter)            10.228   19.355   11.078   29.583   9.3
+    add_29 (brightnessFilter_DW01_add_2)
+                                          2.361    3.911    2.848    6.272   2.0
+    add_30 (brightnessFilter_DW01_add_1)
+                                          3.461    7.957    2.848   11.418   3.6
+    add_32 (brightnessFilter_DW01_add_0)
+                                          2.389    3.959    2.848    6.348   2.0
+1

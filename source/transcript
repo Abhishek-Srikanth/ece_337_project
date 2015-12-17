@@ -1,0 +1,22 @@
+# //  Questa Sim-64
+# //  Version 10.3b linux_x86_64 May 29 2014
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# OpenFile cont_bright.sv
+vlog cont_bright.sv
+# QuestaSim-64 vlog 10.3b Compiler 2014.05 May 29 2014
+# Start time: 22:36:12 on Dec 13,2015
+# vlog -reportprogress 300 cont_bright.sv 
+# ** Error: (vlog-19) Failed to access library 'work' at "work".
+# No such file or directory. (errno = ENOENT)
+# ** Error: Library work not found.
+# ** Error: Verilog Compiler exiting
+# End time: 22:36:12 on Dec 13,2015, Elapsed time: 0:00:00
+# Errors: 3, Warnings: 0
+# /package/eda/mg/questa10.3b/questasim/linux_x86_64/vlog failed.

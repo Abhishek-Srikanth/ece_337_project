@@ -1,0 +1,37 @@
+# //  Questa Sim-64
+# //  Version 10.3b linux_x86_64 May 29 2014
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# vsim -Lf /home/ecegrid/a/ece337/Class0.5u/ECE337_IP/vsim -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work -L /home/ecegrid/a/ece337/Class0.5u/GOLD_LIB "+no_glitch_msg" -coverage -voptargs="+acc" -i -t ps source_work/.tb_address_calc 
+# Start time: 19:08:09 on Dec 16,2015
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: source/sram_address_calc.sv(31): (vopt-2685) [TFMPC] - Too few port connections for 'rowCache'.  Expected 7, found 6.
+# ** Warning: source/sram_address_calc.sv(31): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/sram_address_calc.sv(43): (vopt-2685) [TFMPC] - Too few port connections for 'outputAddr'.  Expected 7, found 6.
+# ** Warning: source/sram_address_calc.sv(43): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# Loading sv_std.std
+# Loading work.tb_address_calc(fast)
+# Loading work.address_calc(fast)
+# Loading work.sdram_address_calc(fast)
+# Loading work.sram_address_calc(fast)
+# Loading work.flex_counter(fast)
+add wave -position insertpoint sim:/tb_address_calc/*
+run 20000ns
+# ** Info: to simulate operation of SDRAM being read and SRAM being written into
+#    Time: 160 ns  Scope: tb_address_calc File: source/tb_address_calc.sv Line: 148
+# ** Info: it also simulates operation of SDRAM being read to WB and SRAM being read to WB
+#    Time: 160 ns  Scope: tb_address_calc File: source/tb_address_calc.sv Line: 149
+# ** Info: To simulate operation of writing into output addr of sram (no-op to sdram)
+#    Time: 4360 ns  Scope: tb_address_calc File: source/tb_address_calc.sv Line: 172
+# ** Info: to simulate operation of SDRAM being written into and SRAM's output being read from
+#    Time: 6680 ns  Scope: tb_address_calc File: source/tb_address_calc.sv Line: 191
+# ** Info:  ^v^v^v^v^v^v^v^v^v^v Finished ^v^v^v^v^v^v^v^v^v^v^
+#    Time: 10280 ns  Scope: tb_address_calc File: source/tb_address_calc.sv Line: 219
+# End time: 19:09:21 on Dec 16,2015, Elapsed time: 0:01:12
+# Errors: 0, Warnings: 4

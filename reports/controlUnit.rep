@@ -1,0 +1,102 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : controlUnit
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:24:04 2015
+****************************************
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+  Startpoint: enable_i_reg
+              (positive level-sensitive latch)
+  Endpoint: enable_i (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  enable_i_reg/CLK (LATCH)                 0.00       0.00 r
+  enable_i_reg/Q (LATCH)                   0.32       0.32 f
+  enable_i (out)                           0.00       0.32 f
+  data arrival time                                   0.32
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+ 
+****************************************
+Report : area
+Design : controlUnit
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:24:05 2015
+****************************************
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+Number of ports:                           24
+Number of nets:                           203
+Number of cells:                          195
+Number of combinational cells:            169
+Number of sequential cells:                26
+Number of macros/black boxes:               0
+Number of buf/inv:                         47
+Number of references:                      14
+
+Combinational area:              38628.000000
+Buf/Inv area:                     6840.000000
+Noncombinational area:            7920.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                 46548.000000
+Total area:                 undefined
+1
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : controlUnit
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 19:24:05 2015
+****************************************
+
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+controlUnit                               0.966    1.418   14.944    2.384 100.0
+1

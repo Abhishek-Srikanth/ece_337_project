@@ -128,10 +128,12 @@ task initialize();
 		| 32BitData( x Width x Height)EOF	|
 		-------------------------------------
 	*/
-	//fin = $fopen("lena_out_fpga.ppm", "r");
-	//fout = $fopen("lena_postChip.ppm", "w");
-	fin = $fopen("sunset_out_fpga.ppm", "r");
-	fout = $fopen("sunset_postChip.ppm", "w");
+	fin = $fopen("tiger_out_fpga.ppm", "r");
+	fout = $fopen("tiger_postChip.ppm", "w");
+//	fin = $fopen("lena_out_fpga.ppm", "r");
+//	fout = $fopen("lena_postChip.ppm", "w");
+	//fin = $fopen("sunset_out_fpga.ppm", "r");
+	//fout = $fopen("sunset_postChip.ppm", "w");
 	//fin = $fopen("colorSet_out_fpga.ppm", "r");
 	//fout = $fopen("colorSet_postChip.ppm", "w");
 	// read magic number and write same
@@ -158,9 +160,9 @@ task initialize();
 	filterMode = 2'b00;		// general bayer filter (nothing special)
 //	filterMode = 2'b01;		// brightness filter
 //	filterMode = 2'b10;		// horizontal blur filter
-//	filterMode = 2'b11;		// whitebalance
+	filterMode = 2'b11;		// whitebalance
 
-	betaValue = 8'd20;		// Not used because of betaValue
+	betaValue = 8'd50;		// Not used because of betaValue
 	white = 32'hffffffff;	
 	data_sdram = '0;		// doesnt matter right now
 	sdram_datareadvalid = 1'b0;

@@ -1,0 +1,114 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : brightnessFilter
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 21:33:58 2015
+****************************************
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+  Startpoint: in[24] (input port)
+  Endpoint: result[23] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in[24] (in)                                             0.00       0.00 f
+  add_29/A[0] (brightnessFilter_DW01_add_2)               0.00       0.00 f
+  add_29/U1/Y (AND2X2)                                    0.22       0.22 f
+  add_29/U1_1/YC (FAX1)                                   0.42       0.64 f
+  add_29/U1_2/YC (FAX1)                                   0.45       1.09 f
+  add_29/U1_3/YC (FAX1)                                   0.45       1.55 f
+  add_29/U1_4/YC (FAX1)                                   0.45       2.00 f
+  add_29/U1_5/YC (FAX1)                                   0.45       2.45 f
+  add_29/U1_6/YC (FAX1)                                   0.45       2.91 f
+  add_29/U1_7/YC (FAX1)                                   0.76       3.67 f
+  add_29/SUM[8] (brightnessFilter_DW01_add_2)             0.00       3.67 f
+  U40/Y (OR2X1)                                           0.13       3.80 f
+  result[23] (out)                                        0.00       3.80 f
+  data arrival time                                                  3.80
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+ 
+****************************************
+Report : area
+Design : brightnessFilter
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 21:33:58 2015
+****************************************
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+Number of ports:                          159
+Number of nets:                           183
+Number of cells:                           58
+Number of combinational cells:             51
+Number of sequential cells:                 4
+Number of macros/black boxes:               0
+Number of buf/inv:                          0
+Number of references:                       4
+
+Combinational area:              31968.000000
+Buf/Inv area:                        0.000000
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                 31968.000000
+Total area:                 undefined
+1
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : brightnessFilter
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 21:33:58 2015
+****************************************
+
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+brightnessFilter                          7.169   15.247   11.078   22.416 100.0
+  add_29 (brightnessFilter_DW01_add_2)    2.370    3.930    2.848    6.300  28.1
+  add_30 (brightnessFilter_DW01_add_1)    2.407    3.970    2.848    6.377  28.4
+  add_32 (brightnessFilter_DW01_add_0)    2.392    3.966    2.848    6.358  28.4
+1

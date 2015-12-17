@@ -1,0 +1,745 @@
+Synthesizing design: filterTopLevel.sv
+dc_shell-t -x "source -echo do_mapping.tcl"
+                                        
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+                                        
+               Version K-2015.06-SP1 for linux64 - Jul 21, 2015 
+                                        
+                    Copyright (c) 1988 - 2015 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+Initializing gui preferences from file  /home/ecegrid/a/mg50/.synopsys_dv_prefs.tcl
+# Step 1:  Read in the source file
+analyze -format sverilog -lib WORK { filterTopLevel.sv}
+Running PRESTO HDLC
+Compiling source file ./source/filterTopLevel.sv
+Presto compilation completed successfully.
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+Loading db file '/package/eda/synopsys/syn-K-2015.06-SP1/libraries/syn/dw_foundation.sldb'
+elaborate filterTopLevel -lib WORK
+Loading db file '/package/eda/synopsys/syn-K-2015.06-SP1/libraries/syn/gtech.db'
+Loading db file '/package/eda/synopsys/syn-K-2015.06-SP1/libraries/syn/standard.sldb'
+  Loading link library 'osu05_stdcells'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully.
+Elaborated 1 design.
+Current design is now 'filterTopLevel'.
+Information: Building the design 'brightnessFilter'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'debayer'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'horblur'. (HDL-193)
+
+Inferred memory devices in process
+	in routine horblur line 52 in file
+		'./source/horblur.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       B_7_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       R_1_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       R_2_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       R_3_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       R_4_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       R_5_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       R_6_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       R_7_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       G_1_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       G_2_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       G_3_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       G_4_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       G_5_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       G_6_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       G_7_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       B_1_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       B_2_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       B_3_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       B_4_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       B_5_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|       B_6_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'whiteBalance'. (HDL-193)
+Presto compilation completed successfully.
+uniquify
+# Step 2: Set design constraints
+# Uncomment below to set timing, area, power, etc. constraints
+# set_max_delay <delay> -from "<input>" -to "<output>"
+# set_max_area <area>
+# set_max_total_power <power> mW
+# Step 3: Compile the design
+compile -map_effort medium
+Information: Checking out the license 'DesignWare'. (SEC-104)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | K-2015.06-DWBB_201506.1 |     *     |
+| Licensed DW Building Blocks        | K-2015.06-DWBB_201506.1 |     *     |
+============================================================================
+
+
+Information: There are 104 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'whiteBalance'
+  Processing 'horblur'
+  Processing 'debayer'
+  Processing 'brightnessFilter'
+  Processing 'filterTopLevel'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Design 'filterTopLevel' has no optimization constraints set. (OPT-108)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Mapping 'whiteBalance_DW_mult_uns_0'
+  Mapping 'whiteBalance_DW_mult_uns_1'
+  Mapping 'whiteBalance_DW_mult_uns_2'
+  Processing 'horblur_DW01_add_0'
+  Processing 'horblur_DW01_add_1'
+  Processing 'horblur_DW01_add_2'
+  Processing 'horblur_DW01_add_3'
+  Processing 'horblur_DW01_add_4'
+  Processing 'horblur_DW01_add_5'
+  Processing 'horblur_DW01_add_6'
+  Processing 'horblur_DW01_add_7'
+  Processing 'horblur_DW01_add_8'
+  Processing 'horblur_DW01_add_9'
+  Processing 'horblur_DW01_add_10'
+  Processing 'horblur_DW01_add_11'
+  Processing 'horblur_DW01_add_12'
+  Processing 'horblur_DW01_add_13'
+  Processing 'horblur_DW01_add_14'
+  Processing 'horblur_DW01_add_15'
+  Processing 'horblur_DW01_add_16'
+  Processing 'horblur_DW01_add_17'
+  Processing 'horblur_DW01_add_18'
+  Processing 'horblur_DW01_add_19'
+  Processing 'horblur_DW01_add_20'
+  Processing 'debayer_DW01_add_0'
+  Processing 'brightnessFilter_DW01_add_0'
+  Processing 'brightnessFilter_DW01_add_1'
+  Processing 'brightnessFilter_DW01_add_2'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Structuring 'whiteBalance'
+  Mapping 'whiteBalance'
+  Structuring 'horblur'
+  Mapping 'horblur'
+  Structuring 'brightnessFilter'
+  Mapping 'brightnessFilter'
+  Structuring 'filterTopLevel'
+  Mapping 'filterTopLevel'
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04  676251.0      0.00       0.0       1.6                          
+    0:00:04  676251.0      0.00       0.0       1.6                          
+    0:00:04  676251.0      0.00       0.0       1.6                          
+    0:00:04  676251.0      0.00       0.0       1.6                          
+    0:00:04  676251.0      0.00       0.0       1.6                          
+    0:00:04  671139.0      0.00       0.0       1.6                          
+    0:00:04  671139.0      0.00       0.0       1.6                          
+    0:00:04  671139.0      0.00       0.0       1.6                          
+    0:00:04  671139.0      0.00       0.0       1.6                          
+    0:00:04  671139.0      0.00       0.0       1.6                          
+    0:00:04  671283.0      0.00       0.0       1.2                          
+    0:00:04  671427.0      0.00       0.0       0.8                          
+    0:00:04  671427.0      0.00       0.0       0.4                          
+    0:00:04  671427.0      0.00       0.0       0.0                          
+    0:00:04  671427.0      0.00       0.0       0.0                          
+    0:00:04  671427.0      0.00       0.0       0.0                          
+    0:00:04  671427.0      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04  671427.0      0.00       0.0       0.0                          
+    0:00:04  671427.0      0.00       0.0       0.0                          
+    0:00:04  671427.0      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04  671427.0      0.00       0.0       0.0                          
+    0:00:04  671427.0      0.00       0.0       0.0                          
+    0:00:04  667107.0      0.00       0.0       0.0                          
+    0:00:04  667107.0      0.00       0.0       0.0                          
+    0:00:04  667107.0      0.00       0.0       0.0                          
+    0:00:04  667107.0      0.00       0.0       0.0                          
+    0:00:04  667107.0      0.00       0.0       0.0                          
+    0:00:04  667107.0      0.00       0.0       0.0                          
+    0:00:04  667107.0      0.00       0.0       0.0                          
+    0:00:04  667107.0      0.00       0.0       0.0                          
+    0:00:04  667107.0      0.00       0.0       0.0                          
+    0:00:04  667107.0      0.00       0.0       0.0                          
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+# Step 4: Output reports
+report_timing -path full -delay max -max_paths 1 -nworst 1 > reports/filterTopLevel.rep
+report_area >> reports/filterTopLevel.rep
+report_power -hier >> reports/filterTopLevel.rep
+# Step 5: Output final VHDL and Verilog files
+write_file -format verilog -hierarchy -output "mapped/filterTopLevel.v"
+Writing verilog file '/home/ecegrid/a/mg50/Documents/ece_337_project/mapped/filterTopLevel.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+Warning: Verilog writer has added 1 nets to module debayer using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+Warning: Verilog writer has added 18 nets to module horblur using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+Warning: Verilog writer has added 24 nets to module whiteBalance using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+Warning: Verilog writer has added 24 nets to module filterTopLevel using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+echo "\nScript Done\n"
+
+Script Done
+
+echo "\nChecking Design\n"
+
+Checking Design
+
+check_design
+ 
+****************************************
+check_design summary:
+Version:     K-2015.06-SP1
+Date:        Wed Dec 16 19:42:46 2015
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                    239
+    Unconnected ports (LINT-28)                                   167
+    Feedthrough (LINT-29)                                          27
+    Shorted outputs (LINT-31)                                      21
+    Constant outputs (LINT-52)                                     24
+
+Cells                                                             121
+    Connected to power or ground (LINT-32)                         94
+    Nets connected to multiple pins on same cell (LINT-33)         27
+--------------------------------------------------------------------------------
+
+Warning: In design 'brightnessFilter', port 'in[15]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter', port 'in[14]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter', port 'in[13]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter', port 'in[12]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter', port 'in[11]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter', port 'in[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter', port 'in[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter', port 'in[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur', port 'data[31]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur', port 'data[30]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur', port 'data[29]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur', port 'data[28]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur', port 'data[27]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur', port 'data[26]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur', port 'data[25]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur', port 'data[24]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance', port 'white[31]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance', port 'white[30]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance', port 'white[29]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance', port 'white[28]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance', port 'white[27]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance', port 'white[26]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance', port 'white[25]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance', port 'white[24]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance', port 'white[16]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance', port 'white[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance', port 'white[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_0', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_0', port 'B[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_0', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_0', port 'SUM[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_0', port 'SUM[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_0', port 'SUM[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_0', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_1', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_1', port 'A[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_1', port 'B[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_1', port 'B[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_1', port 'SUM[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_2', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_2', port 'A[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_2', port 'B[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_2', port 'B[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_2', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_2', port 'SUM[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_2', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_5', port 'A[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_5', port 'A[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_5', port 'B[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_5', port 'B[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_5', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_5', port 'SUM[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_5', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_6', port 'A[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_6', port 'B[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_6', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_6', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_7', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_7', port 'B[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_7', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_7', port 'SUM[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_7', port 'SUM[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_7', port 'SUM[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_7', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_8', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_8', port 'A[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_8', port 'B[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_8', port 'B[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_8', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_8', port 'SUM[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_8', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_9', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_9', port 'A[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_9', port 'B[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_9', port 'B[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_9', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_9', port 'SUM[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_9', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_12', port 'A[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_12', port 'A[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_12', port 'B[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_12', port 'B[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_12', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_12', port 'SUM[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_12', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_13', port 'A[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_13', port 'B[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_13', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_13', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_14', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_14', port 'B[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_14', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_14', port 'SUM[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_14', port 'SUM[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_14', port 'SUM[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_14', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_15', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_15', port 'A[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_15', port 'B[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_15', port 'B[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_15', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_15', port 'SUM[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_15', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_16', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_16', port 'A[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_16', port 'B[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_16', port 'B[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_16', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_16', port 'SUM[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_16', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_19', port 'A[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_19', port 'A[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_19', port 'B[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_19', port 'B[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_19', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_19', port 'SUM[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_19', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_20', port 'A[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_20', port 'B[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_20', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'horblur_DW01_add_20', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'debayer_DW01_add_0', port 'A[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'debayer_DW01_add_0', port 'B[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'debayer_DW01_add_0', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'debayer_DW01_add_0', port 'SUM[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'debayer_DW01_add_0', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_0', port 'A[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_0', port 'B[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_0', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_0', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_1', port 'A[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_1', port 'B[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_2', port 'A[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_2', port 'B[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_2', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'brightnessFilter_DW01_add_2', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_3', port 'b[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_3', port 'product[15]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_3', port 'product[14]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_3', port 'product[13]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_3', port 'product[12]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_3', port 'product[11]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_3', port 'product[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_3', port 'product[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_3', port 'product[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_4', port 'b[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_4', port 'product[15]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_4', port 'product[14]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_4', port 'product[13]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_4', port 'product[12]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_4', port 'product[11]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_4', port 'product[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_4', port 'product[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_4', port 'product[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_5', port 'b[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_5', port 'product[15]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_5', port 'product[14]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_5', port 'product[13]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_5', port 'product[12]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_5', port 'product[11]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_5', port 'product[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_5', port 'product[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'whiteBalance_DW_mult_uns_5', port 'product[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'debayer', input port 'in[31]' is connected directly to output port 'out[23]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[30]' is connected directly to output port 'out[22]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[29]' is connected directly to output port 'out[21]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[28]' is connected directly to output port 'out[20]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[27]' is connected directly to output port 'out[19]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[26]' is connected directly to output port 'out[18]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[25]' is connected directly to output port 'out[17]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[24]' is connected directly to output port 'out[16]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[7]' is connected directly to output port 'out[7]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[6]' is connected directly to output port 'out[6]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[5]' is connected directly to output port 'out[5]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[4]' is connected directly to output port 'out[4]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[3]' is connected directly to output port 'out[3]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[2]' is connected directly to output port 'out[2]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[1]' is connected directly to output port 'out[1]'. (LINT-29)
+Warning: In design 'debayer', input port 'in[0]' is connected directly to output port 'out[0]'. (LINT-29)
+Warning: In design 'whiteBalance', input port 'in[31]' is connected directly to output port 'out[31]'. (LINT-29)
+Warning: In design 'whiteBalance', input port 'in[30]' is connected directly to output port 'out[30]'. (LINT-29)
+Warning: In design 'whiteBalance', input port 'in[29]' is connected directly to output port 'out[29]'. (LINT-29)
+Warning: In design 'whiteBalance', input port 'in[28]' is connected directly to output port 'out[28]'. (LINT-29)
+Warning: In design 'whiteBalance', input port 'in[27]' is connected directly to output port 'out[27]'. (LINT-29)
+Warning: In design 'whiteBalance', input port 'in[26]' is connected directly to output port 'out[26]'. (LINT-29)
+Warning: In design 'whiteBalance', input port 'in[25]' is connected directly to output port 'out[25]'. (LINT-29)
+Warning: In design 'whiteBalance', input port 'in[24]' is connected directly to output port 'out[24]'. (LINT-29)
+Warning: In design 'whiteBalance_DW_mult_uns_3', input port 'a[0]' is connected directly to output port 'product[0]'. (LINT-29)
+Warning: In design 'whiteBalance_DW_mult_uns_4', input port 'a[0]' is connected directly to output port 'product[0]'. (LINT-29)
+Warning: In design 'whiteBalance_DW_mult_uns_5', input port 'a[0]' is connected directly to output port 'product[0]'. (LINT-29)
+Warning: In design 'brightnessFilter', output port 'result[31]' is connected directly to output port 'result[24]'. (LINT-31)
+Warning: In design 'brightnessFilter', output port 'result[31]' is connected directly to output port 'result[25]'. (LINT-31)
+Warning: In design 'brightnessFilter', output port 'result[31]' is connected directly to output port 'result[26]'. (LINT-31)
+Warning: In design 'brightnessFilter', output port 'result[31]' is connected directly to output port 'result[27]'. (LINT-31)
+Warning: In design 'brightnessFilter', output port 'result[31]' is connected directly to output port 'result[28]'. (LINT-31)
+Warning: In design 'brightnessFilter', output port 'result[31]' is connected directly to output port 'result[29]'. (LINT-31)
+Warning: In design 'brightnessFilter', output port 'result[31]' is connected directly to output port 'result[30]'. (LINT-31)
+Warning: In design 'debayer', output port 'out[31]' is connected directly to output port 'out[24]'. (LINT-31)
+Warning: In design 'debayer', output port 'out[31]' is connected directly to output port 'out[25]'. (LINT-31)
+Warning: In design 'debayer', output port 'out[31]' is connected directly to output port 'out[26]'. (LINT-31)
+Warning: In design 'debayer', output port 'out[31]' is connected directly to output port 'out[27]'. (LINT-31)
+Warning: In design 'debayer', output port 'out[31]' is connected directly to output port 'out[28]'. (LINT-31)
+Warning: In design 'debayer', output port 'out[31]' is connected directly to output port 'out[29]'. (LINT-31)
+Warning: In design 'debayer', output port 'out[31]' is connected directly to output port 'out[30]'. (LINT-31)
+Warning: In design 'horblur', output port 'blur[31]' is connected directly to output port 'blur[24]'. (LINT-31)
+Warning: In design 'horblur', output port 'blur[31]' is connected directly to output port 'blur[25]'. (LINT-31)
+Warning: In design 'horblur', output port 'blur[31]' is connected directly to output port 'blur[26]'. (LINT-31)
+Warning: In design 'horblur', output port 'blur[31]' is connected directly to output port 'blur[27]'. (LINT-31)
+Warning: In design 'horblur', output port 'blur[31]' is connected directly to output port 'blur[28]'. (LINT-31)
+Warning: In design 'horblur', output port 'blur[31]' is connected directly to output port 'blur[29]'. (LINT-31)
+Warning: In design 'horblur', output port 'blur[31]' is connected directly to output port 'blur[30]'. (LINT-31)
+Warning: In design 'filterTopLevel', a pin on submodule 'horizontalBlur' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'data[31]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'horizontalBlur' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'data[30]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'horizontalBlur' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'data[29]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'horizontalBlur' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'data[28]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'horizontalBlur' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'data[27]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'horizontalBlur' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'data[26]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'horizontalBlur' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'data[25]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'horizontalBlur' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'data[24]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'ennodaWhiteBalance' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'in[31]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'ennodaWhiteBalance' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'in[30]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'ennodaWhiteBalance' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'in[29]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'ennodaWhiteBalance' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'in[28]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'ennodaWhiteBalance' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'in[27]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'ennodaWhiteBalance' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'in[26]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'ennodaWhiteBalance' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'in[25]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', a pin on submodule 'ennodaWhiteBalance' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'in[24]' is connected to logic 1. 
+Warning: In design 'brightnessFilter', a pin on submodule 'add_32' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[8]' is connected to logic 0. 
+Warning: In design 'brightnessFilter', a pin on submodule 'add_32' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[8]' is connected to logic 0. 
+Warning: In design 'brightnessFilter', a pin on submodule 'add_32' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'brightnessFilter', a pin on submodule 'add_30' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[8]' is connected to logic 0. 
+Warning: In design 'brightnessFilter', a pin on submodule 'add_30' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[8]' is connected to logic 0. 
+Warning: In design 'brightnessFilter', a pin on submodule 'add_30' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'brightnessFilter', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[8]' is connected to logic 0. 
+Warning: In design 'brightnessFilter', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[8]' is connected to logic 0. 
+Warning: In design 'brightnessFilter', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'debayer', a pin on submodule 'add_20' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[8]' is connected to logic 0. 
+Warning: In design 'debayer', a pin on submodule 'add_20' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[8]' is connected to logic 0. 
+Warning: In design 'debayer', a pin on submodule 'add_20' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_0_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_0_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_0_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_6_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_6_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_6_root_add_48_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_0_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_0_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_0_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_6_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_6_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_6_root_add_47_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_0_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_0_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_0_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_1_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[10]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_2_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[9]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_5_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_6_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_6_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'B[8]' is connected to logic 0. 
+Warning: In design 'horblur', a pin on submodule 'add_6_root_add_46_7' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'whiteBalance', a pin on submodule 'mult_283' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[0]' is connected to logic 1. 
+Warning: In design 'whiteBalance', a pin on submodule 'mult_284' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[0]' is connected to logic 1. 
+Warning: In design 'whiteBalance', a pin on submodule 'mult_285' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[0]' is connected to logic 1. 
+Warning: In design 'filterTopLevel', the same net is connected to more than one pin on submodule 'brighter'. (LINT-33)
+   Net 'debayerResult[15]' is connected to pins 'in[23]', 'in[15]''.
+Warning: In design 'filterTopLevel', the same net is connected to more than one pin on submodule 'brighter'. (LINT-33)
+   Net 'debayerResult[14]' is connected to pins 'in[22]', 'in[14]''.
+Warning: In design 'filterTopLevel', the same net is connected to more than one pin on submodule 'brighter'. (LINT-33)
+   Net 'debayerResult[13]' is connected to pins 'in[21]', 'in[13]''.
+Warning: In design 'filterTopLevel', the same net is connected to more than one pin on submodule 'brighter'. (LINT-33)
+   Net 'debayerResult[12]' is connected to pins 'in[20]', 'in[12]''.
+Warning: In design 'filterTopLevel', the same net is connected to more than one pin on submodule 'brighter'. (LINT-33)
+   Net 'debayerResult[11]' is connected to pins 'in[19]', 'in[11]''.
+Warning: In design 'filterTopLevel', the same net is connected to more than one pin on submodule 'brighter'. (LINT-33)
+   Net 'debayerResult[10]' is connected to pins 'in[18]', 'in[10]''.
+Warning: In design 'filterTopLevel', the same net is connected to more than one pin on submodule 'brighter'. (LINT-33)
+   Net 'debayerResult[9]' is connected to pins 'in[17]', 'in[9]''.
+Warning: In design 'filterTopLevel', the same net is connected to more than one pin on submodule 'brighter'. (LINT-33)
+   Net 'debayerResult[8]' is connected to pins 'in[16]', 'in[8]''.
+Warning: In design 'brightnessFilter', the same net is connected to more than one pin on submodule 'add_32'. (LINT-33)
+   Net 'n7' is connected to pins 'A[8]', 'B[8]'', 'CI'.
+Warning: In design 'brightnessFilter', the same net is connected to more than one pin on submodule 'add_30'. (LINT-33)
+   Net 'n8' is connected to pins 'A[8]', 'B[8]'', 'CI'.
+Warning: In design 'brightnessFilter', the same net is connected to more than one pin on submodule 'add_29'. (LINT-33)
+   Net 'n9' is connected to pins 'A[8]', 'B[8]'', 'CI'.
+Warning: In design 'debayer', the same net is connected to more than one pin on submodule 'add_20'. (LINT-33)
+   Net 'n1' is connected to pins 'A[8]', 'B[8]'', 'CI'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_0_root_add_48_7'. (LINT-33)
+   Net 'n577' is connected to pins 'A[10]', 'B[10]''.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_1_root_add_48_7'. (LINT-33)
+   Net 'n577' is connected to pins 'A[10]', 'A[9]'', 'B[10]', 'B[9]'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_2_root_add_48_7'. (LINT-33)
+   Net 'n3' is connected to pins 'A[10]', 'A[9]'', 'B[10]', 'CI'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_5_root_add_48_7'. (LINT-33)
+   Net 'n6' is connected to pins 'A[9]', 'A[8]'', 'B[9]', 'B[8]', 'CI'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_6_root_add_48_7'. (LINT-33)
+   Net 'n7' is connected to pins 'A[8]', 'B[8]'', 'CI'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_0_root_add_47_7'. (LINT-33)
+   Net 'n577' is connected to pins 'A[10]', 'B[10]''.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_1_root_add_47_7'. (LINT-33)
+   Net 'n577' is connected to pins 'A[10]', 'A[9]'', 'B[10]', 'B[9]'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_2_root_add_47_7'. (LINT-33)
+   Net 'n10' is connected to pins 'A[10]', 'A[9]'', 'B[10]', 'CI'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_5_root_add_47_7'. (LINT-33)
+   Net 'n13' is connected to pins 'A[9]', 'A[8]'', 'B[9]', 'B[8]', 'CI'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_6_root_add_47_7'. (LINT-33)
+   Net 'n14' is connected to pins 'A[8]', 'B[8]'', 'CI'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_0_root_add_46_7'. (LINT-33)
+   Net 'n577' is connected to pins 'A[10]', 'B[10]''.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_1_root_add_46_7'. (LINT-33)
+   Net 'n577' is connected to pins 'A[10]', 'A[9]'', 'B[10]', 'B[9]'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_2_root_add_46_7'. (LINT-33)
+   Net 'n17' is connected to pins 'A[10]', 'A[9]'', 'B[10]', 'CI'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_5_root_add_46_7'. (LINT-33)
+   Net 'n20' is connected to pins 'A[9]', 'A[8]'', 'B[9]', 'B[8]', 'CI'.
+Warning: In design 'horblur', the same net is connected to more than one pin on submodule 'add_6_root_add_46_7'. (LINT-33)
+   Net 'n21' is connected to pins 'A[8]', 'B[8]'', 'CI'.
+Warning: In design 'brightnessFilter', output port 'result[31]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'brightnessFilter', output port 'result[30]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'brightnessFilter', output port 'result[29]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'brightnessFilter', output port 'result[28]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'brightnessFilter', output port 'result[27]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'brightnessFilter', output port 'result[26]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'brightnessFilter', output port 'result[25]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'brightnessFilter', output port 'result[24]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'debayer', output port 'out[31]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'debayer', output port 'out[30]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'debayer', output port 'out[29]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'debayer', output port 'out[28]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'debayer', output port 'out[27]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'debayer', output port 'out[26]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'debayer', output port 'out[25]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'debayer', output port 'out[24]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'horblur', output port 'blur[31]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'horblur', output port 'blur[30]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'horblur', output port 'blur[29]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'horblur', output port 'blur[28]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'horblur', output port 'blur[27]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'horblur', output port 'blur[26]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'horblur', output port 'blur[25]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'horblur', output port 'blur[24]' is connected directly to 'logic 1'. (LINT-52)
+quit
+
+Thank you...
+Done
+
+

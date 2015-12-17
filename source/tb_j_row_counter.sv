@@ -64,7 +64,7 @@ module tb_j_row_counter
 		assert(value == exp_value) else $error("Clear did not reset value");
 		assert(rollover_flag == 1'b0) else $error("Clear did not reset ro_flag");
 		
-		for(exp_value = '0; exp_value < img_height - 2;) 
+		for(exp_value = '0; exp_value < img_height - 1;) 
 		begin
 			clock(3);
 			count_enable = 1'b1; 

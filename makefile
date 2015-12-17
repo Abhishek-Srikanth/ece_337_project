@@ -16,16 +16,16 @@ include /home/ecegrid/a/ece337/Course_Prod/course_make_vars
 # (do not include the source folder in the name)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
 # AND THE AUTOMATED GRADING SYSTEM
-COMPONENT_FILES	:= address_calc.sv brightnessFilter.sv controlUnit.sv debayer.sv delaySingleClock.sv filterTopLevel.sv flex_counter.sv i_col_counter.sv i_wr_counter.sv j_row_counter.sv rggb.sv risingEdgeDetector.sv sdram_address_calc.sv sram_address_calc.sv sram_simulation.sv wbuffer.sv horblur.sv whiteBalance.sv
+COMPONENT_FILES	:= address_calc.sv brightnessFilter.sv controlUnit.sv debayer.sv delaySingleClock.sv filterTopLevel.sv flex_counter.sv i_col_counter.sv i_wr_counter.sv j_row_counter.sv rggb.sv risingEdgeDetector.sv sdram_address_calc.sv sram_address_calc.sv wbuffer.sv horblur.sv whiteBalance.sv sram_simulation.sv 
 
 # Specify the name of the top level file (do not include the source folder in the name)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
 # AND THE AUTOMATED GRADING SYSTEM
-TOP_LEVEL_FILE	:= customLogicTLD.sv
+TOP_LEVEL_FILE	:= customLogicTLD.sv sram_simulation.sv
 
 # Specify the filepath of the test bench you want to use (ie. tb_top_level.sv)
 # (do not include the source folder in the name)
-TEST_BENCH	:= tb_$(TOP_LEVEL_FILE)
+TEST_BENCH	:= tb_customLogicTLD.sv #tb_$(TOP_LEVEL_FILE)
 
 # Fill in the names of any test bench helper code files (code files referenced by your testbenches
 # other than the actual design files)( do not include the 'source/')

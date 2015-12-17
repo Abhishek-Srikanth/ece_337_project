@@ -23,22 +23,22 @@ debayer ennodaDebayer
 initial
 begin
 	in = {8'h00, 8'h00, 8'h00, 8'h00};
-	#1
+	#2
 	assert(out == {8'hFF, 8'h00, 8'h00, 8'h00} ) else $error("output is not correct");
 	#10
 
 	in = {8'h38, 8'h21, 8'h21, 8'hab};
-	#1
+	#2
 	assert(out == {8'hFF, 8'h38, 8'h21, 8'hab} ) else $error("output is not correct");
 	#10
 
 	in = {8'hfa, 8'd210, 8'd220, 8'haf};
-	#1
+	#2
 	assert(out == {8'hFF, 8'hfa, 8'd215, 8'haf} ) else $error("output is not correct");
 	#10
 
 	in = {8'h12, 8'h00, 8'd255, 8'h31};
-	#1
+	#2
 	assert(out == {8'hFF, 8'h12, 8'd127, 8'h31} ) else $error("output is not correct");
 	$info("mudichaachu");	
 end

@@ -1,0 +1,252 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : customLogicTLD
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 22:31:20 2015
+****************************************
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+  Startpoint: colCounter/colCounter/count_out_reg[0]/CLK
+              (internal path startpoint)
+  Endpoint: postFilterData[14]
+            (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  colCounter/colCounter/count_out_reg[0]/CLK (DFFSR)      0.00       0.00 r
+  colCounter/colCounter/count_out_reg[0]/Q (DFFSR)        0.66       0.66 r
+  colCounter/colCounter/count_out[0] (flex_counter_NUM_CNT_BITS13_3)
+                                                          0.00       0.66 r
+  colCounter/value[0] (i_col_counter)                     0.00       0.66 r
+  reorderingModule/col (rggb)                             0.00       0.66 r
+  reorderingModule/U90/Y (NOR2X1)                         0.22       0.89 f
+  reorderingModule/U3/Y (BUFX2)                           0.71       1.60 f
+  reorderingModule/U5/Y (OR2X2)                           0.84       2.44 f
+  reorderingModule/U71/Y (MUX2X1)                         0.30       2.74 r
+  reorderingModule/U70/Y (INVX1)                          0.11       2.85 f
+  reorderingModule/out[16] (rggb)                         0.00       2.85 f
+  topLevelFilterBlock/in[16] (filterTopLevel)             0.00       2.85 f
+  topLevelFilterBlock/debayerModule/in[16] (debayer)      0.00       2.85 f
+  topLevelFilterBlock/debayerModule/add_20/A[0] (debayer_DW01_add_0)
+                                                          0.00       2.85 f
+  topLevelFilterBlock/debayerModule/add_20/U1/Y (AND2X1)
+                                                          0.32       3.17 f
+  topLevelFilterBlock/debayerModule/add_20/U1_1/YC (FAX1)
+                                                          0.45       3.62 f
+  topLevelFilterBlock/debayerModule/add_20/U1_2/YS (FAX1)
+                                                          0.97       4.59 f
+  topLevelFilterBlock/debayerModule/add_20/SUM[2] (debayer_DW01_add_0)
+                                                          0.00       4.59 f
+  topLevelFilterBlock/debayerModule/out[9] (debayer)      0.00       4.59 f
+  topLevelFilterBlock/horizontalBlur/data[9] (horblur)
+                                                          0.00       4.59 f
+  topLevelFilterBlock/horizontalBlur/U374/Y (INVX1)       0.38       4.96 r
+  topLevelFilterBlock/horizontalBlur/U373/Y (XOR2X1)      0.28       5.24 f
+  topLevelFilterBlock/horizontalBlur/U372/Y (XOR2X1)      0.33       5.57 f
+  topLevelFilterBlock/horizontalBlur/add_1_root_add_47_7/B[1] (horblur_DW01_add_8)
+                                                          0.00       5.57 f
+  topLevelFilterBlock/horizontalBlur/add_1_root_add_47_7/U1_1/YC (FAX1)
+                                                          0.46       6.03 f
+  topLevelFilterBlock/horizontalBlur/add_1_root_add_47_7/U1_2/YC (FAX1)
+                                                          0.45       6.49 f
+  topLevelFilterBlock/horizontalBlur/add_1_root_add_47_7/U1_3/YS (FAX1)
+                                                          0.59       7.08 f
+  topLevelFilterBlock/horizontalBlur/add_1_root_add_47_7/SUM[3] (horblur_DW01_add_8)
+                                                          0.00       7.08 f
+  topLevelFilterBlock/horizontalBlur/add_0_root_add_47_7/B[3] (horblur_DW01_add_7)
+                                                          0.00       7.08 f
+  topLevelFilterBlock/horizontalBlur/add_0_root_add_47_7/U1_3/YC (FAX1)
+                                                          0.47       7.55 f
+  topLevelFilterBlock/horizontalBlur/add_0_root_add_47_7/U1_4/YC (FAX1)
+                                                          0.45       8.01 f
+  topLevelFilterBlock/horizontalBlur/add_0_root_add_47_7/U1_5/YC (FAX1)
+                                                          0.45       8.46 f
+  topLevelFilterBlock/horizontalBlur/add_0_root_add_47_7/U1_6/YC (FAX1)
+                                                          0.45       8.91 f
+  topLevelFilterBlock/horizontalBlur/add_0_root_add_47_7/U1_7/YC (FAX1)
+                                                          0.45       9.37 f
+  topLevelFilterBlock/horizontalBlur/add_0_root_add_47_7/U1_8/YC (FAX1)
+                                                          0.45       9.82 f
+  topLevelFilterBlock/horizontalBlur/add_0_root_add_47_7/U1_9/YS (FAX1)
+                                                          0.44      10.26 r
+  topLevelFilterBlock/horizontalBlur/add_0_root_add_47_7/SUM[9] (horblur_DW01_add_7)
+                                                          0.00      10.26 r
+  topLevelFilterBlock/horizontalBlur/blur[14] (horblur)
+                                                          0.00      10.26 r
+  topLevelFilterBlock/U71/Y (AOI22X1)                     0.13      10.40 f
+  topLevelFilterBlock/U70/Y (NAND2X1)                     0.12      10.52 r
+  topLevelFilterBlock/result[14] (filterTopLevel)         0.00      10.52 r
+  postFilterData[14] (out)                                0.00      10.52 r
+  data arrival time                                                 10.52
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+ 
+****************************************
+Report : area
+Design : customLogicTLD
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 22:31:20 2015
+****************************************
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+Number of ports:                         2620
+Number of nets:                          5755
+Number of cells:                         3294
+Number of combinational cells:           2687
+Number of sequential cells:               554
+Number of macros/black boxes:               0
+Number of buf/inv:                        721
+Number of references:                      10
+
+Combinational area:             909576.000000
+Buf/Inv area:                   107208.000000
+Noncombinational area:          449424.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:               1359000.000000
+Total area:                 undefined
+1
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : customLogicTLD
+Version: K-2015.06-SP1
+Date   : Wed Dec 16 22:31:21 2015
+****************************************
+
+
+Library(s) Used:
+
+    osu05_stdcells (File: /package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db)
+
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+customLogicTLD                           67.009  113.852  423.294  180.861 100.0
+  topLevelFilterBlock (filterTopLevel)   36.019   41.979  203.137   77.998  43.1
+    ennodaWhiteBalance (whiteBalance)    22.181   19.872   48.384   42.053  23.3
+      mult_285 (whiteBalance_DW_mult_uns_5)
+                                          1.814    0.761   11.261    2.574   1.4
+      mult_284 (whiteBalance_DW_mult_uns_4)
+                                          1.809    0.757   11.261    2.567   1.4
+      mult_283 (whiteBalance_DW_mult_uns_3)
+                                          1.805    0.755   11.261    2.560   1.4
+    horizontalBlur (horblur)              7.096   15.199  133.889   22.295  12.3
+      add_6_root_add_46_7 (horblur_DW01_add_20)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+      add_5_root_add_46_7 (horblur_DW01_add_19)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+      add_2_root_add_46_7 (horblur_DW01_add_16)
+                                          0.000    0.000    3.212 3.21e-06   0.0
+      add_1_root_add_46_7 (horblur_DW01_add_15)
+                                          0.000    0.000    3.212 3.21e-06   0.0
+      add_0_root_add_46_7 (horblur_DW01_add_14)
+                                          0.000    0.000    2.950 2.95e-06   0.0
+      add_6_root_add_47_7 (horblur_DW01_add_13)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+      add_5_root_add_47_7 (horblur_DW01_add_12)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+      add_2_root_add_47_7 (horblur_DW01_add_9)
+                                          0.000    0.000    3.212 3.21e-06   0.0
+      add_1_root_add_47_7 (horblur_DW01_add_8)
+                                          0.000    0.000    3.212 3.21e-06   0.0
+      add_0_root_add_47_7 (horblur_DW01_add_7)
+                                          0.000    0.000    2.950 2.95e-06   0.0
+      add_6_root_add_48_7 (horblur_DW01_add_6)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+      add_5_root_add_48_7 (horblur_DW01_add_5)
+                                          0.000    0.000    2.848 2.85e-06   0.0
+      add_2_root_add_48_7 (horblur_DW01_add_2)
+                                          0.000    0.000    3.212 3.21e-06   0.0
+      add_1_root_add_48_7 (horblur_DW01_add_1)
+                                          0.000    0.000    3.212 3.21e-06   0.0
+      add_0_root_add_48_7 (horblur_DW01_add_0)
+                                          0.000    0.000    2.950 2.95e-06   0.0
+    debayerModule (debayer)               0.000    0.000    2.667 2.67e-06   0.0
+      add_20 (debayer_DW01_add_0)         0.000    0.000    2.667 2.67e-06   0.0
+    brighter (brightnessFilter)           1.827    3.727   11.078    5.554   3.1
+      add_29 (brightnessFilter_DW01_add_2)
+                                          0.278    0.862    2.848    1.140   0.6
+      add_30 (brightnessFilter_DW01_add_1)
+                                          0.278    0.862    2.848    1.140   0.6
+      add_32 (brightnessFilter_DW01_add_0)
+                                          0.278    0.862    2.848    1.140   0.6
+  reorderingModule (rggb)                 0.000    0.000    7.046 7.05e-06   0.0
+  windowBuffer (wbuffer)                  0.000    3.276   23.655    3.276   1.8
+  thalai (controlUnit)                    0.394    0.879   15.488    1.273   0.7
+  addressCalculator (address_calc)       23.643   44.640  104.116   68.283  37.8
+    sramAddrCalc (sram_address_calc)      3.672    8.545   48.988   12.217   6.8
+      sub_44 (sram_address_calc_DW01_dec_0)
+                                          2.188    1.798    1.991    3.986   2.2
+      r307 (sram_address_calc_DW01_add_0)
+                                          0.000 1.75e-04    8.420 1.83e-04   0.0
+      outputAddr (flex_counter_NUM_CNT_BITS13_0)
+                                          0.803    3.775   16.055    4.578   2.5
+        add_56 (flex_counter_NUM_CNT_BITS13_0_DW01_inc_0)
+                                          0.000    0.000    3.137 3.14e-06   0.0
+      rowCache (flex_counter_NUM_CNT_BITS13_1)
+                                          0.681    2.972   16.055    3.653   2.0
+        add_56 (flex_counter_NUM_CNT_BITS13_1_DW01_inc_0)
+                                       2.13e-04 1.93e-04    3.137 4.08e-04   0.0
+    sdramAddrCalc (sdram_address_calc)   19.971   36.094   55.128   56.066  31.0
+      r302 (sdram_address_calc_DW01_inc_0)
+                                          1.621    1.640    6.596    3.262   1.8
+  rowCounter (j_row_counter)              2.949    5.526   18.046    8.476   4.7
+    sub_21 (j_row_counter_DW01_dec_0)     2.155    1.774    1.991    3.929   2.2
+    rowCounter (flex_counter_NUM_CNT_BITS13_2)
+                                          0.794    3.752   16.055    4.547   2.5
+      add_56 (flex_counter_NUM_CNT_BITS13_2_DW01_inc_0)
+                                          0.000    0.000    3.137 3.14e-06   0.0
+  colCounter (i_col_counter)              0.692    2.976   16.055    3.668   2.0
+    colCounter (flex_counter_NUM_CNT_BITS13_3)
+                                          0.692    2.976   16.055    3.668   2.0
+      add_56 (flex_counter_NUM_CNT_BITS13_3_DW01_inc_0)
+                                          0.000    0.000    3.137 3.14e-06   0.0
+  outputColCounter (i_wr_counter)         2.990    5.573   18.046    8.563   4.7
+    sub_21 (i_wr_counter_DW01_dec_0)      2.188    1.798    1.991    3.986   2.2
+    iWrCounter (flex_counter_NUM_CNT_BITS13_4)
+                                          0.803    3.775   16.055    4.578   2.5
+      add_56 (flex_counter_NUM_CNT_BITS13_4_DW01_inc_0)
+                                          0.000    0.000    3.137 3.14e-06   0.0
+  dataFromSDRAM (delaySingleClock)        0.133    8.665   17.055    8.797   4.9
+  edgeDetector (risingEdgeDetector)       0.189    0.338    0.649    0.527   0.3
+1

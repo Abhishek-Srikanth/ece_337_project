@@ -1,0 +1,22 @@
+# //  Questa Sim-64
+# //  Version 10.3b linux_x86_64 May 29 2014
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# vsim -Lf /home/ecegrid/a/ece337/Class0.5u/ECE337_IP/vsim -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work -L /home/ecegrid/a/ece337/Class0.5u/GOLD_LIB "+no_glitch_msg" -coverage -voptargs="+acc" -i -t ps source_work/.tb_sdram_address_calc 
+# Start time: 18:55:42 on Dec 16,2015
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading sv_std.std
+# Loading work.tb_sdram_address_calc(fast)
+# Loading work.sdram_address_calc(fast)
+add wave -position insertpoint sim:/tb_sdram_address_calc/*
+run 20000ns
+# ** Info:  ^v^v^v^v^v^v^v^v^v^v Finished ^v^v^v^v^v^v^v^v^v^v^
+#    Time: 3580 ns  Scope: tb_sdram_address_calc File: source/tb_sdram_address_calc.sv Line: 150
+# End time: 18:56:29 on Dec 16,2015, Elapsed time: 0:00:47
+# Errors: 0, Warnings: 0

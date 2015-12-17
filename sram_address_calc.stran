@@ -1,0 +1,35 @@
+# //  Questa Sim-64
+# //  Version 10.3b linux_x86_64 May 29 2014
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# vsim -Lf /home/ecegrid/a/ece337/Class0.5u/ECE337_IP/vsim -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work -L /home/ecegrid/a/ece337/Class0.5u/GOLD_LIB "+no_glitch_msg" -coverage -voptargs="+acc" -i -t ps source_work/.tb_sram_address_calc 
+# Start time: 18:48:16 on Dec 16,2015
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: source/sram_address_calc.sv(31): (vopt-2685) [TFMPC] - Too few port connections for 'rowCache'.  Expected 7, found 6.
+# ** Warning: source/sram_address_calc.sv(31): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/sram_address_calc.sv(43): (vopt-2685) [TFMPC] - Too few port connections for 'outputAddr'.  Expected 7, found 6.
+# ** Warning: source/sram_address_calc.sv(43): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# Loading sv_std.std
+# Loading work.tb_sram_address_calc(fast)
+# Loading work.sram_address_calc(fast)
+# Loading work.flex_counter(fast)
+add wave -position insertpoint sim:/tb_sram_address_calc/*
+run 2000ns
+# ** Info: Accessing addresses in SRAM's ROW_CACHE
+#    Time: 300 ns  Scope: tb_sram_address_calc File: source/tb_sram_address_calc.sv Line: 112
+run 2000ns
+run 2000ns
+# ** Info: Accessing addresses in SRAM's OUTPUT_ADDR
+#    Time: 4700 ns  Scope: tb_sram_address_calc File: source/tb_sram_address_calc.sv Line: 131
+run 2000ns
+run 2000ns
+# ** Info:  ^v^v^v^v^v^v^v^v^v^v Finished ^v^v^v^v^v^v^v^v^v^v^
+#    Time: 9080 ns  Scope: tb_sram_address_calc File: source/tb_sram_address_calc.sv Line: 150
+# End time: 18:49:38 on Dec 16,2015, Elapsed time: 0:01:22
+# Errors: 0, Warnings: 4
