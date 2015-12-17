@@ -48,7 +48,7 @@ reg [25:0] exp_write_address_sdram;
 integer fin;
 integer fout;
 integer magicNo, maxVal;
-
+/*
 wire [31:0] sram_dataFromSDRAM;			
 wire [31:0] postFilterData;				
 wire [25:0] address_sram;				
@@ -58,7 +58,7 @@ wire sram_en;
 
 wire [31:0] data_sram; // 31:0
 wire sram_datareadvalid;
-
+*/
 
 // DUT port mapping
 customLogicTLD ennodaCustomLogic
@@ -80,8 +80,8 @@ customLogicTLD ennodaCustomLogic
 	.sdram_write_en				(sdram_write_en),
 	.address_sdram				(address_sdram), 	// 25:0
 	.writeData_sdram			(writeData_sdram),	// 31:0
-	.finish_flag				(finish_flag),
-
+	.finish_flag				(finish_flag)
+/*
 	.sram_dataFromSDRAM			(sram_dataFromSDRAM),	// 31:0
 	.postFilterData				(postFilterData),	// 31:0
 	.address_sram				(address_sram),	// 25:0
@@ -91,10 +91,10 @@ customLogicTLD ennodaCustomLogic
 
 	.data_sram					(data_sram),	// 31:0
 	.sram_datareadvalid			(sram_datareadvalid)
-
+*/
 );
 
-// sram is outside top level
+/* sram is outside top level
 sram_simulation ennodaSRAM_simulation
 (
 	.clk					(clk),
@@ -108,6 +108,7 @@ sram_simulation ennodaSRAM_simulation
 	.out_data				(data_sram),			// 31:0
 	.dataReadValid			(sram_datareadvalid)
 );
+*/
 
 task clock(input integer noClocks);
 	for(m = 0; m < noClocks; m=m+1)
@@ -128,10 +129,10 @@ task initialize();
 		| 32BitData( x Width x Height)EOF	|
 		-------------------------------------
 	*/
-	fin = $fopen("tiger_out_fpga.ppm", "r");
-	fout = $fopen("tiger_postChip.ppm", "w");
-//	fin = $fopen("lena_out_fpga.ppm", "r");
-//	fout = $fopen("lena_postChip.ppm", "w");
+//	fin = $fopen("tiger_out_fpga.ppm", "r");
+//	fout = $fopen("tiger_postChip.ppm", "w");
+	fin = $fopen("lena_out_fpga.ppm", "r");
+	fout = $fopen("lena_postChip.ppm", "w");
 	//fin = $fopen("sunset_out_fpga.ppm", "r");
 	//fout = $fopen("sunset_postChip.ppm", "w");
 	//fin = $fopen("colorSet_out_fpga.ppm", "r");
@@ -160,7 +161,7 @@ task initialize();
 	filterMode = 2'b00;		// general bayer filter (nothing special)
 //	filterMode = 2'b01;		// brightness filter
 //	filterMode = 2'b10;		// horizontal blur filter
-	filterMode = 2'b11;		// whitebalance
+//	filterMode = 2'b11;		// whitebalance
 
 	betaValue = 8'd50;		// Not used because of betaValue
 	white = 32'hffffffff;	

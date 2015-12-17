@@ -26,9 +26,9 @@ module customLogicTLD
 	output wire sdram_write_en,
 	output wire [25:0] address_sdram,
 	output wire [31:0] writeData_sdram,
-	output wire finish_flag,
+	output wire finish_flag
 
-	// for sram to be outside custom logic
+	/* for sram to be outside custom logic
 	output wire [31:0] sram_dataFromSDRAM,
 	output wire [31:0] postFilterData,
 	output wire [25:0] address_sram,
@@ -37,6 +37,7 @@ module customLogicTLD
 	output wire sram_en,
 	input wire [31:0] data_sram,
 	input wire sram_datareadvalid
+	*/
 );
 
 localparam rowCacheStartAddr  = {13'd0, 13'd0};
@@ -49,24 +50,23 @@ wire [7:0] wb2;  		// windowBuffer connecting wires
 wire [7:0] wb3;
 wire [7:0] wb4;	
 wire [31:0] reorderedWire;									// reOrdered wire to filter top level
-//wire [31:0] postFilterData;									// output of filter block
+wire [31:0] postFilterData;									// output of filter block
 wire [12:0] i_value;										// value of counter i
 wire [12:0] j_value;										// value of counter j
 wire i_wr_en, i_en, j_en;  									// enable wires
-wire addrCalc_sram_en, addrCalc_sdram_en, /*sram_en,*/ WB_en;	// enable wires
-//wire sram_datareadvalid;
+wire addrCalc_sram_en, addrCalc_sdram_en, sram_en, WB_en;	// enable wires
+wire sram_datareadvalid;
 wire addrCalc_sram_mode, addrCalc_sdram_mode;				// addrCalc mode
-//wire [25:0] address_sram;									// address to query sram
+wire [25:0] address_sram;									// address to query sram
 wire [2:0] mode_WB;											// WB mode
-//wire mode_sram;												// sram modes
+wire mode_sram;												// sram modes
 wire [31:0] delayedData_sdram;
 wire [31:0] delayedData_sram;
-//wire [31:0] data_sram;
+wire [31:0] data_sram;
 
 assign writeData_sdram = data_sram; //delayedData_sram;
 
 // wiring for sram to be moved outside module
-assign sram_dataFromSDRAM = delayedData_sdram;
 assign addrCalc_mode_sram = addrCalc_sram_mode;
 
 
@@ -229,7 +229,7 @@ filterTopLevel topLevelFilterBlock
 	.result					(postFilterData)	// 31:0
 );
 
-/*
+
 sram_simulation ennodaSRAM_simulation
 (
 	.clk					(clk),
@@ -243,6 +243,6 @@ sram_simulation ennodaSRAM_simulation
 	.out_data				(data_sram),			// 31:0
 	.dataReadValid			(sram_datareadvalid)
 );
-*/
+
 
 endmodule
