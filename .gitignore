@@ -19,3 +19,4 @@ default.svf
 *.BAK
 covhtmlreport/
 #*#
+*.ppm
