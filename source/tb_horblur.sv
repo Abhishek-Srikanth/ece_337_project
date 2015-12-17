@@ -64,24 +64,24 @@ module tb_horblur
 		assert(out == 32'hff000000) else $error("reset not working properly");
 		in = '1;
 		#2
-		assert(out == {8'hff, 8'd63, 8'd63, 8'd63}) else $error("output is %d", out);
+		assert(out == {8'hff, 8'd31, 8'd31, 8'd31}) else $error("output is %d", out);
 		clock(1);
-		assert(out == {8'hff, 8'd63, 8'd63, 8'd63}) else $error("output is %d", out);
+		assert(out == {8'hff, 8'd31, 8'd31, 8'd31}) else $error("output is %d", out);
 		
 		wb_en = 1'b1;
 		clock(1);
 		wb_en = 1'b0;
-		assert(out == {8'hff, 8'd127, 8'd127, 8'd127}) else $error("output is %d", out);
+		assert(out == {8'hff, 8'd63, 8'd63, 8'd63}) else $error("output is %d", out);
 		clock(1);
 
 		wb_en = 1'b1;
 		clock(1);
 		wb_en = 1'b0;
-		assert(out == {8'hff, 8'd191, 8'd191, 8'd191}) else $error("output is %d", out);
+		assert(out == {8'hff, 8'd95, 8'd95, 8'd95}) else $error("output is %d", out);
 		clock(1);
 
 		wb_en = 1'b1;
-		clock(1);
+		clock(5);
 		wb_en = 1'b0;
 		assert(out == {8'hff, 8'hff, 8'hff, 8'hff}) else $error("output is %d", out);
 		clock(2);
